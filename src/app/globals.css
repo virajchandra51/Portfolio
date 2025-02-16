@@ -6,10 +6,10 @@
   @apply py-24 md:py-32 lg:py-40;
 }
 
-body{
+/* body{
     overflow: hidden;
     cursor: wait;
-}
+} */
 
 .line{
     @apply overflow-hidden;
