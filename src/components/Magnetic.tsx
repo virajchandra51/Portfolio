@@ -27,7 +27,7 @@ const Magnetic = (props: { children: React.ReactElement }) => {
         }
       });
 
-      magnetic.current.addEventListener("mouseleave", (e) => {
+      magnetic.current.addEventListener("mouseleave", () => {
         xTo(0);
         yTo(0);
       });
