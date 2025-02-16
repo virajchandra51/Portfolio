@@ -16,8 +16,11 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
-      console.log(locomotiveScroll);
+      const locomotiveScroll = new LocomotiveScroll({el: document.querySelector("[data-scroll-container]"),
+  smooth: true,
+  tablet: {
+    breakpoint: 0,    // <---- Fixes The Issue 🎉
+  });
       setTimeout(() => {
         setIsLoading(false);
         document.body.style.cursor = "default";
