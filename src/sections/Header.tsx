@@ -7,7 +7,7 @@ import Magnetic from "../components/Magnetic";
 const navItems = [
   {
     label: "About",
-    href: "#intro",
+    href: "#about",
   },
   {
     label: "Selected Works",
