@@ -177,7 +177,7 @@ const Header: FC = () => {
               <div>
                 <a href="/">
                   {/* <Image src={logo} alt="Logo" className="h-11 w-auto" /> */}
-                  <span className="text-2xl font-bold text-white uppercase font-serif">
+                  <span className="text-2xl font-bold lg:text-white text-black uppercase font-serif">
                     V .
                   </span>
                 </a>
