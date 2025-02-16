@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.section {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+body{
+    overflow: hidden;
+    cursor: wait;
+}
+
+.line{
+    @apply overflow-hidden;
+}
+
+.word{
+    @apply translate-y-full;
+    padding: 0.5px 0;
+}
