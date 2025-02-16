@@ -170,7 +170,7 @@ const Header: FC = () => {
           ))}
         </nav>
       </div>
-        <div className="fixed top-0 left-0 w-full backdrop-blur-md mix-blend-difference z-10">
+        <div className="fixed top-0 left-0 w-full backdrop-blur-md lg:mix-blend-difference z-10">
       <Magnetic>
           <div className="container !max-w-full">
             <div className="flex justify-between h-20 items-center">
