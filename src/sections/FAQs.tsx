@@ -58,7 +58,7 @@ const FAQs: FC = () => {
                 </div>
                 <div
                   className={twMerge(
-                    "border border-stone-400 size-11 inline-flex items-center justify-center rounded-full shrink-0 transiton-all duration-300 bg-stone-200",
+                    "border border-stone-400 size-11 inline-flex items-center justify-center rounded-full shrink-0 transiton-all duration-300 bg-white",
                     selectedQuestion === index && "rotate-45"
                   )}
                 >

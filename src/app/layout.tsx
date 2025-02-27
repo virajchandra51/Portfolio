@@ -10,7 +10,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Viraj Chandra",
+  title: "Viraj Chandra • Software Engineer",
   description: "Portfolio of Viraj Chandra",
 };
 
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased bg-stone-200 text-stone-900 ${archivo.variable} font-sans`}>
+      <body className={`antialiased bg-white text-black ${archivo.variable} font-sans`}>
         {children}
       </body>
     </html>

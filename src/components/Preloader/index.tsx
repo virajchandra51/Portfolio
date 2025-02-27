@@ -57,7 +57,7 @@ export default function Index() {
       variants={slideUp}
       initial="initial"
       exit="exit"
-      className="fixed inset-0 flex items-center justify-center z-50 bg-stone-200"
+      className="fixed inset-0 flex items-center justify-center z-50 bg-white"
     >
       {dimension.width > 0 && (
         <>
@@ -65,9 +65,8 @@ export default function Index() {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="absolute z-10 flex items-center text-black text-3xl md:text-4xl lg:text-5xl"
+            className="absolute z-10 flex items-center text-black text-5xl md:text-10xl lg:text-[10rem]"
           >
-            <span className="block w-2.5 h-2.5 bg-black rounded-full mr-2.5"></span>
             {words[index]}
           </motion.p>
           <svg className="absolute top-0 w-full h-[calc(100%+300px)]">
@@ -75,7 +74,7 @@ export default function Index() {
               variants={curve}
               initial="initial"
               exit="exit"
-              fill="#e7e5e4"
+              fill="#fff"
             ></motion.path>
           </svg>
         </>

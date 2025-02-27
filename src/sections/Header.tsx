@@ -193,7 +193,7 @@ const Header: FC = () => {
             <div className="flex items-start gap-4">
               <Magnetic>
                 <div
-                  className="cursor-pointer size-11 border border-stone-400 rounded-full inline-flex items-center justify-center bg-stone-200"
+                  className="cursor-pointer size-11 border border-stone-400 rounded-full inline-flex items-center justify-center bg-white"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   <svg
