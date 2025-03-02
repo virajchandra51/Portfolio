@@ -7,23 +7,23 @@ import { useInView } from "motion/react";
 const navItems = [
   {
     label: "About",
-    href: "#about",
+    href: "/about",
   },
   {
     label: "Projects",
-    href: "#projects",
+    href: "/projects",
   },
   {
-    label: "Testimonials",
-    href: "#testimonials",
+    label: "Blog",
+    href: "https://virajchandra.netlify.app/",
   },
   {
-    label: "FAQs",
-    href: "#faqs",
+    label: "Resume",
+    href: "https://drive.google.com/file/d/1p_5YEk2cgQqgdRqtmRPuyRZHpw42nV60/view?usp=sharing",
   },
   {
     label: "Contact",
-    href: "#footer",
+    href: "/contact",
   },
 ];
 
@@ -120,6 +120,50 @@ const Footer: FC = () => {
                   </a>
                 ))}
               </nav>
+            </div>
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-2 justify-between gap-x-4">
+          <div className="flex h-full w-full flex-col gap-y-6 border-t border-white/10 py-8">
+            <div className="font-general-sans text-xl font-medium text-white uppercase">
+              Social
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-general-sans text-base font-normal text-white/70 transition-all duration-300 ease-in-out hover:text-white"
+                href="https://www.linkedin.com/in/viraj-chandra"
+              >
+                LinkedIn
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-general-sans text-base font-normal text-white/70 transition-all duration-300 ease-in-out hover:text-white"
+                href="https://www.instagram.com/me_ayan_710"
+              >
+                Instagram
+              </a>
+            </div>
+          </div>
+          <div className="flex h-full w-full flex-col gap-y-4 border-t border-white/10 py-8">
+            <div className="font-general-sans text-xl font-medium text-white uppercase">
+              Contact
+            </div>
+            <div className="flex flex-col gap-y-2">
+              <a
+                className="font-general-sans text-base font-normal text-white/70 transition-all duration-300 ease-in-out hover:text-white"
+                href="mailto:virajchandra@google.com"
+              >
+                Email
+              </a>
+              <a
+                className="font-general-sans text-base font-normal text-white/70 transition-all duration-300 ease-in-out hover:text-white"
+                href="tel:+919129916977"
+              >
+                Phone
+              </a>
             </div>
           </div>
         </div>

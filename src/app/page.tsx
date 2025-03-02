@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Hero from "@/components/Hero";
-import Intro from "@/sections/Intro";
+import Intro from "@/components/Intro";
 import { AnimatePresence } from "framer-motion";
 import Preloader from "@/components/Preloader";
 import MarqueeText from "@/components/MarqueeText";

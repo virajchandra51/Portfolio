@@ -20,7 +20,7 @@ const navItems = [
   },
   {
     label: "Resume",
-    href: "/faqs",
+    href: "https://drive.google.com/file/d/1p_5YEk2cgQqgdRqtmRPuyRZHpw42nV60/view?usp=sharing",
   },
   {
     label: "Contact",
