@@ -1,27 +1,11 @@
-import { FC, useEffect, useRef } from "react";
+import { FC } from "react";
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import heroImage from "@/assets/images/hero-image.jpg";
-import Image from "next/image";
 import Button from "@/components/Button";
-import SplitType from "split-type";
 import {
-  useAnimate,
   motion,
-  stagger,
-  useScroll,
-  useTransform,
 } from "motion/react";
 
 const Hero: FC = () => {
-  const [titleScope, titleAnimate] = useAnimate();
-  const scrollingDiv = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: scrollingDiv,
-    offset: ["start end", "end end"],
-  });
-
-  const potraitWidth = useTransform(scrollYProgress, [0, 1], ["100%", "240%"]);
-
   const handleClick = (
     props: { hash: string },
     e: React.MouseEvent<HTMLButtonElement>
