@@ -42,10 +42,10 @@ const Hero: FC = () => {
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-[4rem] md:text-[10rem] lg:text-[12rem] leading-[10rem] mt-40 md:mt-10 flex flex-col justify-center items-center"
+              className="text-[4rem] md:text-[10rem] lg:text-[12rem] leading-[4rem] lg:leading-[10rem] mt-40 md:mt-10 flex flex-col justify-center items-center"
             >
               <span className="uppercase font-medium">Viraj</span>
-              <span className="uppercase font-normal text-stone-500 !text-xl">Software Engineer</span>
+              <span className="uppercase font-normal text-stone-500 !text-lg !lg:text-xl">Software Engineer</span>
               <span className="uppercase font-medium">Chandra</span>
             </motion.h1>
             <div className="flex flex-col mt-10 items-center justify-center gap-6 md:flex-row md:items-center">
