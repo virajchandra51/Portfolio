@@ -1,9 +1,7 @@
 "use client";
-import { useEffect } from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 const Project = (props: {
   name: string;
@@ -11,14 +9,6 @@ const Project = (props: {
   className?: string;
 }) => {
   const { name, image, className, ...rest } = props;
-  const { scope: projectsScope, entraceAnimation: projectsAnimate } =
-    useTextRevealAnimation({
-      duration: 0.5,
-      delay: 0.3,
-    });
-  useEffect(() => {
-    projectsAnimate();
-  }, [projectsAnimate]);
   return (
     <a
       href="#"
@@ -40,7 +30,6 @@ const Project = (props: {
         <div className="mt-8 md:mt-0 flex justify-between items-center md:grid md:[grid-template-columns:1fr_300px_max-content] md:gap-8">
           <div
             className="lg:group-hover/project:pl-8 transition-all duration-700"
-            ref={projectsScope}
           >
             <h3 className="text-2xl md:text-3xl lg:text-4xl">{name}</h3>
           </div>

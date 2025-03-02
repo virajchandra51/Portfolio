@@ -49,7 +49,7 @@ const Footer: FC = () => {
   }, [inView, footerEntranceAnimation]);
 
   return (
-    <footer className="bg-stone-900 text-white" id="contact">
+    <footer className="bg-black text-white" id="contact">
       <div className="container">
         <div className="section">
           <div className="flex items-center gap-3">

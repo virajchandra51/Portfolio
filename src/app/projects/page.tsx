@@ -5,7 +5,6 @@ import image2 from "@/assets/images/project-2.jpg";
 import image3 from "@/assets/images/project-3.jpg";
 import image4 from "@/assets/images/project-4.jpg";
 import image5 from "@/assets/images/project-5.jpg";
-import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 import Project from "@/components/Project";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -33,25 +32,26 @@ const projects = [
 ];
 
 const Projects: FC = () => {
-  const {
-    scope: projectsHeaderScope,
-    entraceAnimation: projectsHeaderAnimate,
-  } = useTextRevealAnimation({
-    duration: 0.5,
-    delay: 0.3,
-  });
   useEffect(() => {
-    projectsHeaderAnimate();
-  }, [projectsHeaderAnimate]);
+    (async () => {
+      const LocomotiveScroll = (await import("locomotive-scroll")).default;
+      const locomotiveScroll = new LocomotiveScroll();
+      console.log(locomotiveScroll);
+      setTimeout(() => {
+        document.body.style.cursor = "default";
+        window.scrollTo(0, 0);
+      }, 3000);
+    })();
+  }, []);
+
   return (
-    <section className="section" id="projects">
-      <div className="container">
-        <h2
-          className="text-4xl md:text-7xl lg:text-8xl"
-          ref={projectsHeaderScope}
-        >
-          Selected Works
-        </h2>
+    <section className="section">
+      <div className="relative my-auto flex min-h-[60vh] flex-col items-center justify-center gap-y-8 px-[5%] md:min-h-screen">
+        <div className="flex flex-col gap-y-6">
+          <h1 className="text-[4rem] leading-[0.9] font-medium tracking-tight uppercase md:text-[10rem] lg:text-[12rem]">
+            PROJECTS
+          </h1>
+        </div>
         <div className="mt-10 md:mt-16 lg:mt-20">
           {projects.map(({ name, image }) => (
             <Project key={name} name={name} image={image} />

@@ -28,7 +28,7 @@ export default function Index() {
       () => {
         setIndex(index + 1);
       },
-      index == 0 ? 1000 : 150
+      index == 0 ? 500 : 150
     );
   }, [index]);
 
@@ -65,7 +65,7 @@ export default function Index() {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className="absolute z-10 flex items-center text-black text-5xl md:text-10xl lg:text-[10rem]"
+            className="font-light absolute z-10 flex items-center text-black text-5xl md:text-10xl lg:text-[10rem]"
           >
             {words[index]}
           </motion.p>

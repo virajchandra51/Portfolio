@@ -74,7 +74,7 @@ const Testimonial = (props: {
     >
       <div className="aspect-square md:aspect-[9/16] md:col-span-2 relative">
         <motion.div
-          className="absolute h-full bg-stone-900"
+          className="absolute h-full bg-black"
           initial={{ width: "100%" }}
           animate={{ width: "0%" }}
           exit={{ width: "100%" }}
