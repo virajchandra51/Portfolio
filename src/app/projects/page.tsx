@@ -7,7 +7,6 @@ import image4 from "@/assets/images/project-4.png";
 import image5 from "@/assets/images/project-5.png";
 import image6 from "@/assets/images/project-6.png";
 import Project from "@/components/Project";
-import { link } from "fs";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const projects = [
