@@ -6,12 +6,14 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 const Project = (props: {
   name: string;
   image: string | StaticImport;
+  link: string;
   className?: string;
 }) => {
   const { name, image, className, ...rest } = props;
   return (
     <a
-      href="#"
+      href={props.link}
+      target="_blank"
       className={twMerge(
         "border-t last:border-b border-stone-400 border-dotted py-6 md:py-8 lg:py-10 flex flex-col relative group/project",
         className
