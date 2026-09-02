@@ -12,22 +12,22 @@ export default function Projects() {
     <>
       <PageHeader title="projects" sub="things i built, mostly finished." />
 
-      <div className="divide-y divide-[var(--rule)]">
+      <div className="divide-y divide-rule">
         {projects.map((p) => (
           <article key={p.name} className="py-8 first:pt-0">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-              <h2 className="font-mono text-sm text-stone-900">{p.name}</h2>
-              <span className="font-mono text-xs text-stone-400">
+              <h2 className="font-mono text-sm text-fg">{p.name}</h2>
+              <span className="font-mono text-xs text-faint">
                 {p.period}
               </span>
             </div>
-            <p className="mt-1 text-[0.9rem] text-stone-500">{p.tagline}</p>
+            <p className="mt-1 text-[0.9rem] text-muted">{p.tagline}</p>
 
             <div className="mt-4 space-y-3">
               {p.body.map((para) => (
                 <p
                   key={para}
-                  className="text-[0.94rem] leading-[1.7] text-stone-700"
+                  className="text-[0.94rem] leading-[1.7] text-body"
                 >
                   {para}
                 </p>
@@ -41,12 +41,12 @@ export default function Projects() {
                   href={l.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-xs text-stone-500 hover:text-stone-900"
+                  className="font-mono text-xs text-muted hover:text-fg"
                 >
                   {l.label} ↗
                 </a>
               ))}
-              <span className="font-mono text-xs text-stone-300">
+              <span className="font-mono text-xs text-faint">
                 {p.stack.join(" · ")}
               </span>
             </div>
@@ -54,7 +54,7 @@ export default function Projects() {
         ))}
       </div>
 
-      <p className="mt-10 text-[0.9rem] text-stone-500">
+      <p className="mt-10 text-[0.9rem] text-muted">
         the rest, including the three.js experiments and the smaller browser
         games, live on{" "}
         <a

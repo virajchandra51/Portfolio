@@ -11,7 +11,7 @@ export default function Nav() {
     <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 py-10 md:py-14">
       <Link
         href="/"
-        className="font-mono text-sm tracking-tight text-stone-900 hover:text-stone-500"
+        className="font-mono text-sm tracking-tight text-fg hover:text-muted"
       >
         {site.name}
       </Link>
@@ -24,8 +24,8 @@ export default function Nav() {
               href={item.href}
               className={
                 active
-                  ? "text-stone-900 underline decoration-stone-900 decoration-1 underline-offset-[5px]"
-                  : "text-stone-500 hover:text-stone-900"
+                  ? "text-fg underline decoration-fg decoration-1 underline-offset-[5px]"
+                  : "text-muted hover:text-fg"
               }
             >
               {item.label}

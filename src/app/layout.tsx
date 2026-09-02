@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${mono.variable} font-sans antialiased`}
       >
-        <div className="mx-auto flex min-h-dvh max-w-[42rem] flex-col px-5 md:px-8">
+        <div className="mx-auto flex min-h-dvh max-w-[34rem] flex-col px-5 md:px-8">
           <Nav />
           <main className="flex-1 pb-20">{children}</main>
           <Footer />

@@ -19,20 +19,20 @@ export default function Writing() {
       />
 
       {posts.length > 0 ? (
-        <ul className="divide-y divide-[var(--rule)]">
+        <ul className="divide-y divide-rule">
           {posts.map((p) => (
             <li key={p.slug} className="py-5 first:pt-0">
               <Link href={`/writing/${p.slug}`} className="group block">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                  <h2 className="font-mono text-sm text-stone-900 group-hover:underline group-hover:decoration-stone-900 group-hover:underline-offset-[4px]">
+                  <h2 className="font-mono text-sm text-fg group-hover:underline group-hover:decoration-fg group-hover:underline-offset-[4px]">
                     {p.title}
                   </h2>
-                  <span className="font-mono text-xs text-stone-400">
+                  <span className="font-mono text-xs text-faint">
                     {p.date}
                   </span>
                 </div>
                 {p.summary && (
-                  <p className="mt-1 text-[0.9rem] text-stone-500">
+                  <p className="mt-1 text-[0.9rem] text-muted">
                     {p.summary}
                   </p>
                 )}
@@ -41,13 +41,13 @@ export default function Writing() {
           ))}
         </ul>
       ) : (
-        <p className="text-[0.94rem] leading-[1.7] text-stone-700">
+        <p className="text-[0.94rem] leading-[1.7] text-body">
           nothing published here yet. most of what i have written lives with the
           problems it explains, so it is listed below instead.
         </p>
       )}
 
-      <h2 className="mt-14 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-stone-400">
+      <h2 className="mt-14 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-faint">
         written elsewhere
       </h2>
       <ul className="mt-5 space-y-4">
@@ -57,11 +57,11 @@ export default function Writing() {
               href={e.url}
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-sm text-stone-900 hover:underline hover:decoration-stone-900 hover:underline-offset-[4px]"
+              className="font-mono text-sm text-fg hover:underline hover:decoration-fg hover:underline-offset-[4px]"
             >
               {e.title} ↗
             </a>
-            <p className="mt-1 text-[0.9rem] text-stone-500">
+            <p className="mt-1 text-[0.9rem] text-muted">
               {e.where} · {e.note}
             </p>
           </li>

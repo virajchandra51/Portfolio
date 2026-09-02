@@ -16,11 +16,11 @@ export default function Home() {
         <h1 className="text-2xl font-medium tracking-tight md:text-3xl">
           viraj chandra
         </h1>
-        <p className="mt-2 font-mono text-[0.8rem] leading-relaxed text-stone-500">
+        <p className="mt-2 font-mono text-[0.8rem] leading-relaxed text-muted">
           {site.role}
         </p>
 
-        <div className="mt-8 space-y-5 text-[0.975rem] leading-[1.75] text-stone-700">
+        <div className="mt-8 space-y-5 text-[0.975rem] leading-[1.75] text-body">
           <p>
             i build backend and data infrastructure at{" "}
             <a
@@ -98,16 +98,16 @@ export default function Home() {
         <hr className="rule" />
 
         <nav className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
-          <Link href="/journey" className="text-stone-500 hover:text-stone-900">
+          <Link href="/journey" className="text-muted hover:text-fg">
             journey &rarr;
           </Link>
-          <Link href="/projects" className="text-stone-500 hover:text-stone-900">
+          <Link href="/projects" className="text-muted hover:text-fg">
             projects &rarr;
           </Link>
-          <Link href="/writing" className="text-stone-500 hover:text-stone-900">
+          <Link href="/writing" className="text-muted hover:text-fg">
             writing &rarr;
           </Link>
-          <Link href="/life" className="text-stone-500 hover:text-stone-900">
+          <Link href="/life" className="text-muted hover:text-fg">
             life &rarr;
           </Link>
         </nav>

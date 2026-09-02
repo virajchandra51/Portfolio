@@ -30,14 +30,14 @@ export default function Post({ params }: { params: { slug: string } }) {
     <article>
       <Link
         href="/writing"
-        className="font-mono text-xs text-stone-400 hover:text-stone-900"
+        className="font-mono text-xs text-faint hover:text-fg"
       >
         &larr; writing
       </Link>
       <h1 className="mt-6 text-2xl font-medium tracking-tight md:text-3xl">
         {post.title}
       </h1>
-      <p className="mt-2 font-mono text-[0.8rem] text-stone-500">{post.date}</p>
+      <p className="mt-2 font-mono text-[0.8rem] text-muted">{post.date}</p>
       <hr className="rule" />
       <div
         className="prose-min"

@@ -14,7 +14,7 @@ function Column({
   if (!live.length) return null;
   return (
     <div>
-      <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-stone-400">
+      <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-faint">
         {title}
       </p>
       <ul className="mt-3 space-y-1.5">
@@ -24,7 +24,7 @@ function Column({
               href={i.url}
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-sm text-stone-500 hover:text-stone-900"
+              className="font-mono text-sm text-muted hover:text-fg"
             >
               {i.label}
             </a>
@@ -37,17 +37,17 @@ function Column({
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--rule)] py-10">
+    <footer className="border-t border-rule py-10">
       <div className="grid grid-cols-3 gap-6 md:gap-8">
         <div>
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-stone-400">
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-faint">
             pages
           </p>
           <ul className="mt-3 space-y-1.5">
             <li>
               <Link
                 href="/"
-                className="font-mono text-sm text-stone-500 hover:text-stone-900"
+                className="font-mono text-sm text-muted hover:text-fg"
               >
                 home
               </Link>
@@ -56,7 +56,7 @@ export default function Footer() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="font-mono text-sm text-stone-500 hover:text-stone-900"
+                  className="font-mono text-sm text-muted hover:text-fg"
                 >
                   {item.label}
                 </Link>
@@ -67,7 +67,7 @@ export default function Footer() {
         <Column title="social" items={social} />
         <Column title="profiles" items={profiles} />
       </div>
-      <p className="mt-10 font-mono text-xs text-stone-400">
+      <p className="mt-10 font-mono text-xs text-faint">
         {site.name} · {year}
       </p>
     </footer>

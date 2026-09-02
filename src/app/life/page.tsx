@@ -15,19 +15,19 @@ export default function Life() {
       <div className="space-y-12">
         {life.map((s) => (
           <section key={s.title}>
-            <h2 className="font-mono text-sm text-stone-900">{s.title}</h2>
+            <h2 className="font-mono text-sm text-fg">{s.title}</h2>
             <div className="mt-3 space-y-3">
               {s.body.map((p) => (
                 <p
                   key={p}
-                  className="text-[0.94rem] leading-[1.7] text-stone-700"
+                  className="text-[0.94rem] leading-[1.7] text-body"
                 >
                   {p}
                 </p>
               ))}
             </div>
             {s.tags && (
-              <p className="mt-3 font-mono text-xs text-stone-400">
+              <p className="mt-3 font-mono text-xs text-faint">
                 {s.tags.join("  ·  ")}
               </p>
             )}
