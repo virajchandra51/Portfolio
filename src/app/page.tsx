@@ -44,7 +44,7 @@ export default function Home() {
             tables and took top-5 retrieval accuracy from 31% to 93%.
           </p>
           <p>
-            alongside that i am a core member and educator at{" "}
+            alongside that i am at{" "}
             <a
               href="https://www.tle-eliminators.com/"
               target="_blank"
@@ -53,10 +53,12 @@ export default function Home() {
             >
               tle eliminators
             </a>
-            , where i have mentored 200+ students, written 100+ editorials, and
-            run 20+ post-contest discussions that have crossed 50,000 views.
-            teaching actually came first: it started with a tutoring platform i
-            built for the batch below mine in college, and it never stopped.
+            , where i lead product and operations and teach competitive
+            programming, including the tle prime cohort. a base of 10,000+
+            students, 200+ editorials, and 200+ lectures and post-contest
+            discussions. teaching actually came first: it started with a
+            tutoring platform i built for the batch below mine in college, and
+            it never stopped.
           </p>
           <p>
             i build small things and finish them. the latest is{" "}

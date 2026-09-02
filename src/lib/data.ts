@@ -24,13 +24,14 @@ export const roles: Role[] = [
   },
   {
     org: "tle eliminators",
-    title: "core member, educator",
+    title: "educator, product and operations",
     period: "dec 2023 - present",
     url: "https://www.tle-eliminators.com/",
     points: [
-      "teach competitive programming. mentored a batch of 200+ students across codeforces, codechef and atcoder.",
-      "wrote 100+ editorial solutions, including the cp-31 sheet and the cses problem set.",
-      "ran 20+ post-contest discussions, together past 50,000 views.",
+      "lead product and operations.",
+      "teach competitive programming to a base of 10,000+ students, across codeforces, codechef and atcoder, including the tle prime cohort.",
+      "taken 200+ lectures and post-contest discussions.",
+      "wrote 200+ editorial solutions, covering the cp-31 sheet and the cses problem set.",
     ],
   },
   {

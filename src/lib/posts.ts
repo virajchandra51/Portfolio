@@ -69,9 +69,9 @@ export const elsewhere = [
     url: "https://github.com/virajchandra51/TLE_CSES",
   },
   {
-    title: "post-contest discussions",
+    title: "lectures and post-contest discussions",
     where: "tle eliminators",
-    note: "20+ sessions, 50,000+ views",
+    note: "200+ sessions, including the tle prime cohort",
     url: "https://www.tle-eliminators.com/",
   },
 ];
