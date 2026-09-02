@@ -1,34 +1,48 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { site } from "@/lib/site";
 
-const archivo = Archivo({
+const inter = Inter({
   display: "swap",
-  weight: "variable",
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-inter",
+});
+
+const mono = JetBrains_Mono({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Viraj Chandra • Software Engineer",
-  description: "Portfolio of Viraj Chandra",
+  title: {
+    default: `${site.name} - software engineer`,
+    template: `%s - ${site.name}`,
+  },
+  description: site.description,
+  openGraph: {
+    title: `${site.name} - software engineer`,
+    description: site.description,
+    type: "website",
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`antialiased bg-white text-black ${archivo.variable} font-sans`}
+        className={`${inter.variable} ${mono.variable} font-sans antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <div className="mx-auto flex min-h-dvh max-w-[42rem] flex-col px-5 md:px-8">
+          <Nav />
+          <main className="flex-1 pb-20">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

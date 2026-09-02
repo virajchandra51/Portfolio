@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# virajchandra.in
 
-## Getting Started
-
-First, run the development server:
+Personal site. Next.js 14 (app router) exported to static HTML and published on
+Netlify. One repo, four pages, no CMS.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static export into ./out
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | File |
+|---|---|
+| name, role line, email, social + profile links | `src/lib/site.ts` |
+| work history, education, ratings, awards | `src/lib/data.ts` |
+| projects page entries | `src/lib/projects.ts` |
+| life page sections | `src/lib/life.ts` |
+| "written elsewhere" list | `src/lib/posts.ts` |
+| blog posts | `content/writing/*.md` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy edits are data edits. You should almost never need to touch a component.
 
-## Learn More
+## Writing a post
 
-To learn more about Next.js, take a look at the following resources:
+Drop a markdown file in `content/writing/`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```markdown
+---
+title: "the title, lowercase"
+date: 2026-09-14
+summary: "one line, shown in the list"
+draft: false
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Body in markdown.
+```
 
-## Deploy on Vercel
+`draft: true` keeps it off the site. It appears on `/writing` automatically,
+newest first, at `/writing/<filename>`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploying
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Netlify builds with `npm run build` and publishes `out/` (see `netlify.toml`).
+Nothing else to configure: there is no server runtime.
+
+## TODO
+
+- `src/lib/site.ts`: set `url` to the custom domain once bought, and fill in the
+  Codeforces profile link.
+- `src/lib/life.ts`: add the rest of the travel list.
+- `content/writing/competitive-programming-journey.md`: finish it or delete it.
