@@ -130,9 +130,11 @@ export default function Journey() {
                 {r.title}
                 <span className="text-faint"> · {r.org}</span>
               </p>
-              <span className="font-mono text-xs text-faint">
-                {r.period}
-              </span>
+              {r.period && (
+                <span className="font-mono text-xs text-faint">
+                  {r.period}
+                </span>
+              )}
             </div>
           ))}
         </div>

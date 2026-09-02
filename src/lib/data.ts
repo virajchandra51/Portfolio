@@ -59,7 +59,11 @@ export const education = [
   },
 ];
 
-export const responsibilities = [
+export const responsibilities: {
+  title: string;
+  org: string;
+  period?: string;
+}[] = [
   {
     title: "convener, training and placement office",
     org: "nit raipur",
@@ -69,6 +73,11 @@ export const responsibilities = [
     title: "overall coordinator, turing club of programmers",
     org: "nit raipur",
     period: "apr 2022 - 2025",
+  },
+  {
+    title: "lead, raaga music club",
+    org: "nit raipur",
+    // TODO: add the years you led raaga, e.g. period: "aug 2022 - 2025".
   },
 ];
 

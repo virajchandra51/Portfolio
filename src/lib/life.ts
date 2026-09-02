@@ -22,13 +22,14 @@ export const life: LifeSection[] = [
     title: "music",
     body: [
       "i sing, and i play more or less anything with strings on it. picked up early and never really put it down.",
+      "led raaga, the music club at nit raipur.",
       "the discipline transfers more than you would expect. so does knowing immediately when something is wrong.",
     ],
   },
   {
     title: "sport and geopolitics",
     body: [
-      "football and lawn tennis, mostly watched, occasionally played.",
+      "lawn tennis is the one i actually competed in, up to state level. football i mostly watch.",
       "geopolitics is my long-running rabbit hole. reading how a decision made in one capital shows up three years later somewhere else scratches the same itch as reading a system trace.",
     ],
   },
