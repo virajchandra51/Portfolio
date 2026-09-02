@@ -14,11 +14,12 @@
   --code-inline: rgba(28, 25, 23, 0.07);
   --select-bg: #1c1917;
   --select-fg: #fbfaf8;
+  color-scheme: light;
 }
 
-/* Follows the reader's system setting. There is no toggle by design. */
-@media (prefers-color-scheme: dark) {
-  :root {
+/* Dark palette applies when the reader's system asks for it, or when they
+   pick it with the toggle. An explicit choice always wins over the system. */
+[data-theme="dark"] {
     --bg: #0e0d0c;
     --fg: #f2f0ed;
     --body: #c4bfb9;
@@ -30,6 +31,23 @@
     --code-inline: rgba(242, 240, 237, 0.09);
     --select-bg: #f2f0ed;
     --select-fg: #0e0d0c;
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e0d0c;
+    --fg: #f2f0ed;
+    --body: #c4bfb9;
+    --muted: #8f8981;
+    --faint: #665f58;
+    --rule: #262320;
+    --code-bg: #191715;
+    --code-fg: #e7e5e4;
+    --code-inline: rgba(242, 240, 237, 0.09);
+    --select-bg: #f2f0ed;
+    --select-fg: #0e0d0c;
+    color-scheme: dark;
   }
 }
 

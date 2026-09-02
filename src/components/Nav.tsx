@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 import { nav, site } from "@/lib/site";
 
 export default function Nav() {
@@ -8,14 +9,15 @@ export default function Nav() {
   const pathname = usePathname().replace(/\/+$/, "") || "/";
 
   return (
-    <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 py-10 md:py-14">
+    <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-10 md:py-14">
       <Link
         href="/"
         className="font-mono text-sm tracking-tight text-fg hover:text-muted"
       >
         {site.name}
       </Link>
-      <nav className="flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm">
+      <div className="flex items-center gap-x-4">
+        <nav className="flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm">
         {nav.map((item) => {
           const active = pathname === item.href;
           return (
@@ -31,8 +33,10 @@ export default function Nav() {
               {item.label}
             </Link>
           );
-        })}
-      </nav>
+          })}
+        </nav>
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

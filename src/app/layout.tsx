@@ -38,7 +38,15 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${mono.variable} font-sans antialiased`}
       >
-        <div className="mx-auto flex min-h-dvh max-w-[34rem] flex-col px-5 md:px-8">
+        {/* Applies a saved theme choice before first paint, so picking dark on
+            a light system (or the reverse) does not flash the wrong palette. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t}}catch(e){}",
+          }}
+        />
+        <div className="mx-auto flex min-h-dvh w-full max-w-[45.5rem] flex-col px-6">
           <Nav />
           <main className="flex-1 pb-20">{children}</main>
           <Footer />
