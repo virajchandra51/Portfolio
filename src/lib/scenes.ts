@@ -20,6 +20,11 @@ export type Scene = {
   // A layered scene is drawn as parallax planes from these files, back to
   // front. A flat scene is a single --scene-image set in globals.css.
   layers?: string[];
+  // "pixel" (default) tiles the plane horizontally and drifts it, which is
+  // right for a repeating pixel-art strip. "smooth" is for a single wide
+  // illustration: no tiling, no auto-drift, just the pointer parallax, so a
+  // non-repeating image never shows its own seam or its edge.
+  render?: "pixel" | "smooth";
 };
 
 export const SCENES: Scene[] = [
@@ -53,6 +58,22 @@ export const SCENES: Scene[] = [
   { id: "rain", label: "Rainy street", note: "Caillebotte, 1877" , mood: "Wet streets" , mix: { rain: 0.9, leaves: 0.15, water: 0.35, thunder: true } },
   { id: "mist", label: "Morning mist", note: "Hiroshige, 1833" , mood: "Before the day starts" , mix: { rain: 0.12, leaves: 0.45, water: 0.3, thunder: false } },
   { id: "dusk", label: "Dusk", note: "Inness, 1891" , mood: "Last of the light" , mix: { rain: 0, leaves: 0.5, water: 0.1, thunder: false } },
+  {
+    id: "underwater",
+    label: "Underwater cave",
+    note: "CraftPix, OGA-BY",
+    mood: "Below the surface",
+    mix: { rain: 0, leaves: 0, water: 0.85, thunder: false },
+    render: "smooth",
+    layers: [
+      "/scenes/underwater/1-layer.png",
+      "/scenes/underwater/2-layer.png",
+      "/scenes/underwater/3-layer.png",
+      "/scenes/underwater/4-layer.png",
+      "/scenes/underwater/5-layer.png",
+      "/scenes/underwater/6-layer.png",
+    ],
+  },
 ];
 
 export const DEFAULT_SCENE = "forest";

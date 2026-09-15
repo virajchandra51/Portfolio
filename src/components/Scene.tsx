@@ -2,9 +2,17 @@
 import { useEffect, useState } from "react";
 import { DEFAULT_SCENE, SCENES } from "@/lib/scenes";
 
-// Depth per plane, back to front. Higher moves further with the pointer, which
-// is what reads as distance.
-const DEPTH = [0.18, 0.42, 0.85, 0.3];
+// Depth per plane, back to front, for a 4-plane pixel-art scene. Higher moves
+// further with the pointer, which is what reads as distance. A scene with a
+// different plane count gets depths spread evenly across the same range.
+const DEPTH_4 = [0.18, 0.42, 0.85, 0.3];
+
+function depthFor(count: number, i: number): number {
+  if (count === DEPTH_4.length) return DEPTH_4[i];
+  const min = 0.15;
+  const max = 0.8;
+  return count <= 1 ? min : min + ((max - min) * i) / (count - 1);
+}
 
 export default function Scene() {
   const [sceneId, setSceneId] = useState(DEFAULT_SCENE);
@@ -43,6 +51,7 @@ export default function Scene() {
   }, []);
 
   const scene = SCENES.find((s) => s.id === sceneId);
+  const smooth = scene?.render === "smooth";
 
   return (
     <div className="scene" aria-hidden="true">
@@ -50,11 +59,11 @@ export default function Scene() {
         scene.layers.map((src, i) => (
           <div
             key={src}
-            className={`plane plane-${i + 1}`}
+            className={`plane plane-${i + 1} ${smooth ? "plane-smooth" : ""}`}
             style={{
               backgroundImage: `url("${src}")`,
               // Each plane shifts a different amount, which is the whole trick.
-              ["--depth" as string]: DEPTH[i] ?? 0.4,
+              ["--depth" as string]: depthFor(scene.layers!.length, i),
             }}
           />
         ))

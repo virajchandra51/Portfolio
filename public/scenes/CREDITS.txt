@@ -8,6 +8,12 @@ snow/      "Snowy Summits Pixel Art Winter Background" by CraftPix.net
            https://opengameart.org/content/snowy-summits-pixel-art-winter-background
            Four separated planes.
 
+underwater/ "Underwater World Parallax Backgrounds" by CraftPix.net
+           2D Game Assets. OGA-BY 3.0: free to use, attribution required.
+           https://opengameart.org/content/underwater-world-parallax-backgrounds
+           Six separated planes, rendered without tiling (a single wide
+           illustration, not a repeating texture).
+
 Painted backdrops. All public domain, from the Art Institute of Chicago's open access
 collection (is_public_domain: true via api.artic.edu). No rights reserved; the
 credit on the site is courtesy, not obligation.
