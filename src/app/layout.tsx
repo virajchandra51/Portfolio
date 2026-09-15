@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
+import Chrome from "@/components/Chrome";
 import Footer from "@/components/Footer";
+import Postcard from "@/components/Postcard";
+import Scene from "@/components/Scene";
 import { site } from "@/lib/site";
 
-const inter = Inter({
+const sans = DM_Sans({
   display: "swap",
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
+});
+
+const serif = Instrument_Serif({
+  display: "swap",
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-serif",
 });
 
 const mono = JetBrains_Mono({
@@ -36,9 +45,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${mono.variable} font-sans antialiased`}
+        className={`${sans.variable} ${serif.variable} ${mono.variable} font-sans antialiased`}
       >
-        {/* Applies a saved theme choice before first paint, so picking dark on
+        {/* Applies a saved theme choice before first paint, so picking night on
             a light system (or the reverse) does not flash the wrong palette. */}
         <script
           dangerouslySetInnerHTML={{
@@ -46,9 +55,10 @@ export default function RootLayout({
               "try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t}}catch(e){}",
           }}
         />
-        <div className="mx-auto flex min-h-dvh w-full max-w-[45.5rem] flex-col px-6">
-          <Nav />
-          <main className="flex-1 pb-20">{children}</main>
+        <Scene />
+        <Chrome />
+        <div className="mx-auto flex min-h-dvh w-full max-w-[56rem] flex-col justify-center px-4 py-16 md:px-8">
+          <Postcard>{children}</Postcard>
           <Footer />
         </div>
       </body>

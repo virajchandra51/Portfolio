@@ -10,12 +10,24 @@ const config: Config = {
     },
     extend: {
       colors: {
-        bg: "var(--bg)",
+        paper: "var(--paper)",
         fg: "var(--fg)",
         body: "var(--body)",
         muted: "var(--muted)",
         faint: "var(--faint)",
         rule: "var(--rule)",
+        seal: {
+          DEFAULT: "var(--seal)",
+          ink: "var(--seal-ink)",
+        },
+        cta: {
+          DEFAULT: "var(--cta-bg)",
+          ink: "var(--cta-ink)",
+        },
+        highlight: {
+          DEFAULT: "var(--highlight)",
+          ink: "var(--highlight-ink)",
+        },
         code: {
           DEFAULT: "var(--code-bg)",
           fg: "var(--code-fg)",
@@ -23,7 +35,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },

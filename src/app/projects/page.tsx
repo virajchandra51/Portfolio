@@ -16,8 +16,8 @@ export default function Projects() {
         {projects.map((p) => (
           <article key={p.name} className="py-8 first:pt-0">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-              <h2 className="font-mono text-sm text-fg">{p.name}</h2>
-              <span className="font-mono text-xs text-faint">
+              <h2 className="text-sm text-fg">{p.name}</h2>
+              <span className="text-xs text-faint">
                 {p.period}
               </span>
             </div>
@@ -41,12 +41,12 @@ export default function Projects() {
                   href={l.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-xs text-muted hover:text-fg"
+                  className="text-xs text-muted hover:text-fg"
                 >
                   {l.label} ↗
                 </a>
               ))}
-              <span className="font-mono text-xs text-faint">
+              <span className="text-xs text-faint">
                 {p.stack.join(" · ")}
               </span>
             </div>

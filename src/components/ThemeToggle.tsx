@@ -20,14 +20,7 @@ function Moon() {
 function Sun() {
   return (
     <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-      <circle
-        cx="8"
-        cy="8"
-        r="3"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
+      <circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" strokeWidth="1.2" />
       <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round">
         <path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9 13 13M13 3l-1.1 1.1M4.1 11.9 3 13" />
       </g>
@@ -57,9 +50,7 @@ export default function ThemeToggle() {
       return;
     }
     setTheme(
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
+      window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
     );
   }, []);
 
@@ -78,12 +69,13 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={theme === "dark" ? "switch to light mode" : "switch to dark mode"}
-      className={`flex h-[1.7rem] w-[1.9rem] items-center justify-center rounded border border-rule text-muted transition hover:border-faint hover:text-fg ${
+      aria-label={theme === "dark" ? "switch to day" : "switch to night"}
+      className={`flex items-center gap-2 rounded bg-seal px-3 py-2 text-[0.72rem] text-seal-ink backdrop-blur transition hover:bg-seal ${
         theme ? "opacity-100" : "opacity-0"
       }`}
     >
       {theme === "dark" ? <Sun /> : <Moon />}
+      <span>{theme === "dark" ? "Night" : "Day"}</span>
     </button>
   );
 }

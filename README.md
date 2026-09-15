@@ -1,7 +1,11 @@
 # virajchandra.in
 
 Personal site. Next.js 14 (app router) exported to static HTML and published on
-Netlify. One repo, four pages, no CMS.
+Netlify. One repo, no CMS.
+
+A postcard on a scene: a fixed illustrated backdrop with a paper card on top
+that holds every page. Day and night are two paper stocks rather than an
+inverted UI. Instrument Serif for display, DM Sans for everything else.
 
 ```bash
 npm install
@@ -18,6 +22,8 @@ npm run build    # static export into ./out
 | projects page entries | `src/lib/projects.ts` |
 | life page sections | `src/lib/life.ts` |
 | "written elsewhere" list | `src/lib/posts.ts` |
+| card tagline, at-a-glance facts | `src/lib/site.ts`, `src/app/page.tsx` |
+| palette, paper, scene | `src/app/globals.css` |
 | blog posts | `content/writing/*.md` |
 
 Copy edits are data edits. You should almost never need to touch a component.
@@ -40,6 +46,19 @@ Body in markdown.
 `draft: true` keeps it off the site. It appears on `/writing` automatically,
 newest first, at `/writing/<filename>`.
 
+## The scene
+
+The backdrop is a CSS gradient placeholder. To use real art, drop the file in
+`public/scenes/` and point `--scene-image` at it in `src/app/globals.css`:
+
+```css
+--scene-image: url("/scenes/desk-night.png");
+--scene-blur: 14px;   /* 0 suits the gradient; a photo or pixel scene wants some */
+```
+
+There is one scene today, so there is no scene switcher yet. `Chrome.tsx` is
+where it would go, next to the day/night toggle.
+
 ## Deploying
 
 Netlify builds with `npm run build` and publishes `out/` (see `netlify.toml`).
@@ -51,3 +70,5 @@ Nothing else to configure: there is no server runtime.
   Codeforces profile link.
 - `src/lib/life.ts`: add the rest of the travel list.
 - `content/writing/competitive-programming-journey.md`: finish it or delete it.
+- Replace the placeholder scene, and the dashed postmark circle on the home
+  card, with real art.

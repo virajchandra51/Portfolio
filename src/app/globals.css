@@ -2,51 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   Postcard on a scene.
+
+   Two layers: a fixed illustrated backdrop (--scene-image) and a paper card
+   that holds every page's content. Day and night are two paper stocks, not an
+   inverted UI, so the card always reads as a physical object.
+--------------------------------------------------------------------------- */
+
 :root {
-  --bg: #fbfaf8;
-  --fg: #1c1917;
-  --body: #44403c;
-  --muted: #78716c;
-  --faint: #a8a29e;
-  --rule: #e7e4df;
-  --code-bg: #1c1917;
-  --code-fg: #f5f5f4;
-  --code-inline: rgba(28, 25, 23, 0.07);
-  --select-bg: #1c1917;
-  --select-fg: #fbfaf8;
+  /* paper */
+  --paper: #f4efe2;
+  --paper-edge: rgba(52, 44, 28, 0.16);
+  --fg: #22362a;
+  --body: #3c4d40;
+  --muted: #5f6d5b;
+  --faint: #8b9484;
+  --rule: rgba(120, 132, 104, 0.32);
+
+  /* chrome that sits on the scene */
+  --seal: #1b3527;
+  --seal-ink: #f1ecdf;
+  --highlight: #9a7f3a;
+  --highlight-ink: #22362a;
+  /* The primary button sits on paper, so it inverts between stocks. */
+  --cta-bg: #1b3527;
+  --cta-ink: #f1ecdf;
+
+  /* the scene itself */
+  --scene-base: #2b3b4e;
+  --scene-blur: 0px;
+  --scene-image:
+    radial-gradient(130% 85% at 50% 112%, #15301f 0%, rgba(21, 48, 31, 0) 62%),
+    radial-gradient(70% 55% at 22% 18%, rgba(240, 201, 142, 0.6), rgba(240, 201, 142, 0) 62%),
+    linear-gradient(180deg, #33445a 0%, #6a6660 34%, #a9855f 58%, #46503c 100%);
+  --scene-veil: rgba(12, 20, 14, 0.28);
+
+  /* code, for blog posts */
+  --code-bg: #1d2a21;
+  --code-fg: #edeadd;
+  --code-inline: rgba(34, 54, 42, 0.09);
+
+  --select-bg: #22362a;
+  --select-fg: #f4efe2;
   color-scheme: light;
 }
 
-/* Dark palette applies when the reader's system asks for it, or when they
-   pick it with the toggle. An explicit choice always wins over the system. */
+/* Night is a darker stock under a darker sky, not a colour inversion. */
 [data-theme="dark"] {
-    --bg: #0e0d0c;
-    --fg: #f2f0ed;
-    --body: #c4bfb9;
-    --muted: #8f8981;
-    --faint: #665f58;
-    --rule: #262320;
-    --code-bg: #191715;
-    --code-fg: #e7e5e4;
-    --code-inline: rgba(242, 240, 237, 0.09);
-    --select-bg: #f2f0ed;
-    --select-fg: #0e0d0c;
-    color-scheme: dark;
+  --paper: #1e231d;
+  --paper-edge: rgba(0, 0, 0, 0.45);
+  --fg: #ece7d8;
+  --body: #c6c6b4;
+  --muted: #9aa394;
+  --faint: #6e7768;
+  --rule: rgba(154, 163, 148, 0.22);
+
+  --seal: #101a13;
+  --seal-ink: #ece7d8;
+  --highlight: #c9bd86;
+  --highlight-ink: #161c16;
+  --cta-bg: #c9bd86;
+  --cta-ink: #161c16;
+
+  --scene-base: #0c1420;
+  --scene-image:
+    radial-gradient(130% 85% at 50% 112%, #060f09 0%, rgba(6, 15, 9, 0) 62%),
+    radial-gradient(70% 55% at 22% 18%, rgba(120, 146, 176, 0.35), rgba(120, 146, 176, 0) 62%),
+    linear-gradient(180deg, #101a2a 0%, #1b2430 38%, #2a2b2c 62%, #141a16 100%);
+  --scene-veil: rgba(4, 8, 6, 0.42);
+
+  --code-bg: #121711;
+  --code-fg: #e4e0d2;
+  --code-inline: rgba(236, 231, 216, 0.09);
+
+  --select-bg: #ece7d8;
+  --select-fg: #1e231d;
+  color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e0d0c;
-    --fg: #f2f0ed;
-    --body: #c4bfb9;
-    --muted: #8f8981;
-    --faint: #665f58;
-    --rule: #262320;
-    --code-bg: #191715;
-    --code-fg: #e7e5e4;
-    --code-inline: rgba(242, 240, 237, 0.09);
-    --select-bg: #f2f0ed;
-    --select-fg: #0e0d0c;
+    --paper: #1e231d;
+    --paper-edge: rgba(0, 0, 0, 0.45);
+    --fg: #ece7d8;
+    --body: #c6c6b4;
+    --muted: #9aa394;
+    --faint: #6e7768;
+    --rule: rgba(154, 163, 148, 0.22);
+
+    --seal: #101a13;
+    --seal-ink: #ece7d8;
+    --highlight: #c9bd86;
+    --highlight-ink: #161c16;
+    --cta-bg: #c9bd86;
+    --cta-ink: #161c16;
+
+    --scene-base: #0c1420;
+    --scene-image:
+      radial-gradient(130% 85% at 50% 112%, #060f09 0%, rgba(6, 15, 9, 0) 62%),
+      radial-gradient(70% 55% at 22% 18%, rgba(120, 146, 176, 0.35), rgba(120, 146, 176, 0) 62%),
+      linear-gradient(180deg, #101a2a 0%, #1b2430 38%, #2a2b2c 62%, #141a16 100%);
+    --scene-veil: rgba(4, 8, 6, 0.42);
+
+    --code-bg: #121711;
+    --code-fg: #e4e0d2;
+    --code-inline: rgba(236, 231, 216, 0.09);
+
+    --select-bg: #ece7d8;
+    --select-fg: #1e231d;
     color-scheme: dark;
   }
 }
@@ -56,7 +120,7 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: var(--scene-base);
   color: var(--fg);
 }
 
@@ -65,7 +129,74 @@ body {
   color: var(--select-fg);
 }
 
-/* Links inside prose get a quiet underline that fills in on hover. */
+/* --- the scene ----------------------------------------------------------- */
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--scene-base);
+}
+
+/* Swap --scene-image for url("/scenes/<name>.png") when the art exists. The
+   inset and scale keep a blurred image from showing its edges. */
+.scene-art {
+  position: absolute;
+  inset: -4%;
+  background-image: var(--scene-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(var(--scene-blur));
+}
+
+.scene-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(90% 70% at 50% 45%, transparent 0%, var(--scene-veil) 100%);
+}
+
+/* --- the card ------------------------------------------------------------ */
+
+.card {
+  background-color: var(--paper);
+  /* Two hairline gradients stand in for paper tooth. Cheap, and it survives
+     both stocks without an image request. */
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      rgba(120, 100, 60, 0.018) 0 2px,
+      transparent 2px 5px
+    ),
+    repeating-linear-gradient(
+      3deg,
+      rgba(120, 100, 60, 0.014) 0 3px,
+      transparent 3px 7px
+    );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 18px 50px -12px var(--paper-edge),
+    0 2px 6px -2px var(--paper-edge);
+  border-radius: 3px;
+}
+
+/* --- shared type --------------------------------------------------------- */
+
+.display {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+
+.label {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .link {
   @apply underline decoration-rule decoration-1 underline-offset-[3px] transition-colors;
 }
@@ -74,22 +205,24 @@ body {
 }
 
 .rule {
-  @apply my-10 h-px w-full border-0 bg-rule;
+  @apply my-8 h-px w-full border-0 bg-rule;
 }
 
-/* Markdown output from /writing */
+/* --- markdown from /writing ---------------------------------------------- */
+
 .prose-min > * + * {
   @apply mt-4;
 }
 .prose-min h2 {
-  @apply mt-10 font-mono text-sm uppercase tracking-[0.12em] text-muted;
+  @apply mt-10 text-lg;
+  font-family: var(--font-serif), Georgia, serif;
 }
 .prose-min h3 {
   @apply mt-8 font-medium;
 }
 .prose-min p,
 .prose-min li {
-  @apply text-[0.975rem] leading-[1.75] text-body;
+  @apply text-[0.95rem] leading-[1.75] text-body;
 }
 .prose-min ul {
   @apply list-disc space-y-1 pl-5;
@@ -104,27 +237,26 @@ body {
   @apply rounded bg-code-inline px-1 py-0.5 font-mono text-[0.85em];
 }
 .prose-min pre {
-  @apply overflow-x-auto rounded-md bg-code p-4 text-[0.8rem] leading-relaxed text-code-fg;
+  @apply overflow-x-auto rounded bg-code p-4 font-mono text-[0.8rem] leading-relaxed text-code-fg;
 }
 .prose-min pre code {
   @apply bg-transparent p-0 text-inherit;
 }
 .prose-min blockquote {
-  @apply border-l-2 border-faint pl-4 text-muted italic;
+  @apply border-l-2 border-faint pl-4 italic text-muted;
 }
 
-/* Intro curtain. See src/components/Preloader.tsx.
-   The base state is hidden and the keyframe reveals it, so if animations never
-   run (reduced motion, a browser that drops them) the page is simply visible
-   rather than stuck behind a panel. No JS involved either way.
-   Timing: the word cycle finishes at 1.16s, the panel lifts from 1.26s to 1.5s. */
+/* --- intro curtain -------------------------------------------------------
+   Base state is hidden and the keyframe reveals it, so if animations never run
+   the page is simply visible rather than stuck behind a panel. No JS. */
+
 .preloader {
   position: fixed;
   inset: 0;
   z-index: 50;
   display: grid;
   place-items: center;
-  background: var(--bg);
+  background: var(--paper);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -137,17 +269,16 @@ body {
 
 .preloader-word {
   grid-area: 1 / 1;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 1.75rem;
-  font-weight: 300;
-  letter-spacing: -0.02em;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 2rem;
+  color: var(--fg);
   opacity: 0;
   animation: preloader-word 0.16s linear both;
 }
 
 @media screen and (min-width: 768px) {
   .preloader-word {
-    font-size: 2.75rem;
+    font-size: 3rem;
   }
 }
 

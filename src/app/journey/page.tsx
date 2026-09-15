@@ -22,7 +22,7 @@ function Section({
 }) {
   return (
     <section className="mt-14 first:mt-0">
-      <h2 className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-faint">
+      <h2 className="text-[0.7rem] uppercase tracking-[0.14em] text-faint">
         {label}
       </h2>
       <div className="mt-5">{children}</div>
@@ -40,7 +40,7 @@ export default function Journey() {
           {roles.map((role) => (
             <article key={`${role.org}-${role.title}`}>
               <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 className="font-mono text-sm text-fg">
+                <h3 className="text-sm text-fg">
                   {role.url ? (
                     <a
                       href={role.url}
@@ -55,7 +55,7 @@ export default function Journey() {
                   )}
                   <span className="text-faint"> / {role.title}</span>
                 </h3>
-                <span className="font-mono text-xs text-faint">
+                <span className="text-xs text-faint">
                   {role.period}
                 </span>
               </div>
@@ -82,10 +82,10 @@ export default function Journey() {
               className="flex flex-wrap items-baseline justify-between gap-x-4"
             >
               <div>
-                <p className="font-mono text-sm text-fg">{e.school}</p>
+                <p className="text-sm text-fg">{e.school}</p>
                 <p className="mt-1 text-[0.9rem] text-muted">{e.detail}</p>
               </div>
-              <span className="font-mono text-xs text-faint">
+              <span className="text-xs text-faint">
                 {e.period}
               </span>
             </div>
@@ -97,7 +97,7 @@ export default function Journey() {
         <ul className="space-y-2">
           {ratings.map((r) => (
             <li key={r.platform} className="flex flex-wrap gap-x-3">
-              <span className="font-mono text-sm text-fg">
+              <span className="text-sm text-fg">
                 {r.platform}
               </span>
               <span className="text-[0.9rem] text-muted">{r.detail}</span>
@@ -131,7 +131,7 @@ export default function Journey() {
                 <span className="text-faint"> · {r.org}</span>
               </p>
               {r.period && (
-                <span className="font-mono text-xs text-faint">
+                <span className="text-xs text-faint">
                   {r.period}
                 </span>
               )}

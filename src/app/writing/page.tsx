@@ -24,10 +24,10 @@ export default function Writing() {
             <li key={p.slug} className="py-5 first:pt-0">
               <Link href={`/writing/${p.slug}`} className="group block">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                  <h2 className="font-mono text-sm text-fg group-hover:underline group-hover:decoration-fg group-hover:underline-offset-[4px]">
+                  <h2 className="text-sm text-fg group-hover:underline group-hover:decoration-fg group-hover:underline-offset-[4px]">
                     {p.title}
                   </h2>
-                  <span className="font-mono text-xs text-faint">
+                  <span className="text-xs text-faint">
                     {p.date}
                   </span>
                 </div>
@@ -47,7 +47,7 @@ export default function Writing() {
         </p>
       )}
 
-      <h2 className="mt-14 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-faint">
+      <h2 className="mt-14 text-[0.7rem] uppercase tracking-[0.14em] text-faint">
         written elsewhere
       </h2>
       <ul className="mt-5 space-y-4">
@@ -57,7 +57,7 @@ export default function Writing() {
               href={e.url}
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-sm text-fg hover:underline hover:decoration-fg hover:underline-offset-[4px]"
+              className="text-sm text-fg hover:underline hover:decoration-fg hover:underline-offset-[4px]"
             >
               {e.title} ↗
             </a>

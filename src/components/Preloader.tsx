@@ -1,6 +1,6 @@
-// CSS-only intro. It is rendered in the static HTML and removes itself with a
-// keyframe, so it never depends on JS to get out of the way, never blocks
-// clicks, and disappears instantly for prefers-reduced-motion.
+// CSS-only intro. See the .preloader rules in globals.css: it is rendered in
+// the static HTML and removes itself with a keyframe, so it never depends on
+// JS to get out of the way and never blocks clicks.
 const words = ["hello", "namaste", "bonjour", "ciao", "hola", "hallo"];
 
 export default function Preloader() {

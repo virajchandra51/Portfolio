@@ -15,7 +15,7 @@ export default function Life() {
       <div className="space-y-12">
         {life.map((s) => (
           <section key={s.title}>
-            <h2 className="font-mono text-sm text-fg">{s.title}</h2>
+            <h2 className="text-sm text-fg">{s.title}</h2>
             <div className="mt-3 space-y-3">
               {s.body.map((p) => (
                 <p
@@ -27,7 +27,7 @@ export default function Life() {
               ))}
             </div>
             {s.tags && (
-              <p className="mt-3 font-mono text-xs text-faint">
+              <p className="mt-3 text-xs text-faint">
                 {s.tags.join("  ·  ")}
               </p>
             )}

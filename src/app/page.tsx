@@ -1,119 +1,104 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import Preloader from "@/components/Preloader";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+// The right panel of the card. Everything a person who just looked you up
+// needs, visible in the first screenful rather than behind the mood.
+const facts = [
+  { org: "Google", detail: "software engineer ii, monetization infra" },
+  { org: "TLE Eliminators", detail: "educator, product and operations" },
+  { org: "Fikar", detail: "maker, fikar.app" },
+  { org: "NIT Raipur", detail: "b.tech information technology, 9.18" },
+];
 
 export default function Home() {
   return (
     <>
       <Preloader />
 
-      <section>
-        <h1 className="text-2xl font-medium tracking-tight md:text-3xl">
-          viraj chandra
-        </h1>
-        <p className="mt-2 font-mono text-[0.8rem] leading-relaxed text-muted">
-          {site.role}
-        </p>
+      <div className="grid gap-10 md:grid-cols-[1.35fr_1fr] md:gap-12">
+        <section>
+          <h1 className="display text-[2.1rem] md:text-[2.6rem]">
+            hi, i&apos;m viraj chandra.
+          </h1>
+          <p className="mt-3 font-serif text-lg italic text-muted">
+            pull up a chair.
+          </p>
 
-        <div className="mt-8 space-y-5 text-[0.975rem] leading-[1.75] text-body">
-          <p>
-            i build backend and data infrastructure at{" "}
-            <a
-              href="https://about.google/"
-              target="_blank"
-              rel="noreferrer"
-              className="link"
+          <div className="mt-6 space-y-4 text-[0.95rem] leading-[1.75] text-body">
+            <p>
+              i build backend and data infrastructure at google, and teach
+              competitive programming to a few thousand people who are trying
+              to get better at it. i like problems that have a correct answer,
+              and systems where you can prove you found it.
+            </p>
+            <p>
+              lately that means agents and data discovery at work, leading
+              product and operations at{" "}
+              <a
+                href="https://www.tle-eliminators.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="link"
+              >
+                tle eliminators
+              </a>
+              , and{" "}
+              <a
+                href="https://fikar.app"
+                target="_blank"
+                rel="noreferrer"
+                className="link"
+              >
+                fikar
+              </a>
+              , a menu bar app where a pixel-art desi maa worries about your
+              water, food and sleep.
+            </p>
+          </div>
+
+          <div className="mt-7 flex flex-wrap items-center gap-4">
+            <Link
+              href="/journey"
+              className="inline-flex items-center gap-2 rounded bg-cta px-5 py-3 text-[0.85rem] text-cta-ink transition-opacity hover:opacity-90"
             >
-              google
-            </a>
-            , and teach competitive programming to a few hundred people who are
-            trying to get better at it. i like problems that have a correct
-            answer, and systems where you can prove you found it.
-          </p>
-          <p>
-            currently software engineer ii on monetization infrastructure,
-            building shared infra that products like google health and payments
-            run on. i started on home history for the google home app. most of
-            my recent work has been agents and data discovery: an mcp-based
-            agent wired to gemini that generates metadata across 120+ internal
-            tables and took top-5 retrieval accuracy from 31% to 93%.
-          </p>
-          <p>
-            alongside that i am at{" "}
-            <a
-              href="https://www.tle-eliminators.com/"
-              target="_blank"
-              rel="noreferrer"
-              className="link"
-            >
-              tle eliminators
-            </a>
-            , where i lead product and operations and teach competitive
-            programming, including the tle prime cohort. a base of 10,000+
-            students, 200+ editorials, and 200+ lectures and post-contest
-            discussions. teaching actually came first: it started with a
-            tutoring platform i built for the batch below mine in college, and
-            it never stopped.
-          </p>
-          <p>
-            i build small things and finish them. the latest is{" "}
-            <a
-              href="https://fikar.app"
-              target="_blank"
-              rel="noreferrer"
-              className="link"
-            >
-              fikar
-            </a>
-            , a menu bar app where a pixel-art desi maa worries about your
-            water, food and sleep, and once a day tells you to call your actual
-            mother. free, under 2 mb, on macos and windows.
-          </p>
-          <p>
-            previously swe intern on home wifi at google. b.tech in information
-            technology from nit raipur, 9.18/10. codeforces expert, codechef
-            5-star, leetcode guardian, icpc 2023 regionalist.
-          </p>
-          <p>
-            reach me at{" "}
-            <a href={`mailto:${site.email}`} className="link">
+              the long version
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <a href={`mailto:${site.email}`} className="link text-[0.88rem]">
               {site.email}
-            </a>{" "}
-            or on{" "}
-            <a
-              href="https://www.linkedin.com/in/viraj-chandra/"
-              target="_blank"
-              rel="noreferrer"
-              className="link"
-            >
-              linkedin
             </a>
-            . i read everything that comes in.
+          </div>
+        </section>
+
+        <aside className="md:border-l md:border-rule md:pl-10">
+          <div className="flex items-start justify-between gap-4">
+            <p className="label">at a glance</p>
+            {/* Postmark. A real stamp image can sit here once the art exists. */}
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-dashed border-rule text-center font-serif text-[0.68rem] leading-tight text-faint">
+              bengaluru
+              <br />
+              2026
+            </div>
+          </div>
+
+          <dl className="mt-5 space-y-4">
+            {facts.map((f) => (
+              <div key={f.org}>
+                <dt className="font-serif text-[1.05rem] text-fg">{f.org}</dt>
+                <dd className="mt-0.5 text-[0.82rem] leading-snug text-muted">
+                  {f.detail}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <p className="mt-6 border-t border-rule pt-4 text-[0.78rem] leading-relaxed text-faint">
+            codeforces expert · codechef 5-star · leetcode guardian · icpc 2023
+            regionalist
           </p>
-        </div>
-
-        <hr className="rule" />
-
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
-          <Link href="/journey" className="text-muted hover:text-fg">
-            journey &rarr;
-          </Link>
-          <Link href="/projects" className="text-muted hover:text-fg">
-            projects &rarr;
-          </Link>
-          <Link href="/writing" className="text-muted hover:text-fg">
-            writing &rarr;
-          </Link>
-          <Link href="/life" className="text-muted hover:text-fg">
-            life &rarr;
-          </Link>
-        </nav>
-      </section>
+        </aside>
+      </div>
     </>
   );
 }

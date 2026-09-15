@@ -5,6 +5,8 @@ export const site = {
     "software engineer at google, educator at tle eliminators, and the person behind fikar.",
   url: "https://virajchandra.netlify.app", // TODO: swap for the custom domain once you buy it
   email: "virajchandra51@gmail.com",
+  // The italic line in the bottom corner of the card.
+  cardline: "Written in lowercase, on purpose.",
 };
 
 export const nav = [
