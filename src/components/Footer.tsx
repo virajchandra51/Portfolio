@@ -23,10 +23,9 @@ export default function Footer() {
           {site.name} · 2026
         </p>
         <p className="mt-1 max-w-[22rem] text-[0.66rem] leading-relaxed text-seal-ink opacity-45">
-          Backdrops: Cazin, <i>Landscape</i> (c. 1895) and Whistler,{" "}
-          <i>Nocturne: Blue and Gold</i> (1872). Art Institute of Chicago,
-          public domain. Ambience: CC0 field recordings by Garuda1982,
-          mudflea2, BurghRecords and morvei01 on Freesound.
+          Backdrops: Hiroshige, Caillebotte and Inness, public domain via the
+          Art Institute of Chicago. Ambience: CC0 field recordings by
+          Garuda1982, mudflea2, BurghRecords and morvei01 on Freesound.
         </p>
       </div>
     </footer>

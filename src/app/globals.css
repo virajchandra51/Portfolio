@@ -29,13 +29,6 @@
   --cta-bg: #1b3527;
   --cta-ink: #f1ecdf;
 
-  /* the scene itself */
-  --scene-base: #6b6a5b;
-  --scene-blur: 9px;
-  /* Cazin, "Landscape", c. 1895. Public domain, Art Institute of Chicago.
-     See public/scenes/CREDITS.txt. */
-  --scene-image: url("/scenes/day.jpg");
-  --scene-veil: rgba(28, 30, 20, 0.30);
 
   /* code, for blog posts */
   --code-bg: #1d2a21;
@@ -64,11 +57,6 @@
   --cta-bg: #c9bd86;
   --cta-ink: #161c16;
 
-  --scene-base: #39423f;
-  /* Whistler, "Nocturne: Blue and Gold-Southampton Water", 1872. Public
-     domain, Art Institute of Chicago. */
-  --scene-image: url("/scenes/night.jpg");
-  --scene-veil: rgba(4, 10, 14, 0.30);
 
   --code-bg: #121711;
   --code-fg: #e4e0d2;
@@ -96,11 +84,6 @@
     --cta-bg: #c9bd86;
     --cta-ink: #161c16;
 
-    --scene-base: #39423f;
-    /* Whistler, "Nocturne: Blue and Gold-Southampton Water", 1872. Public
-       domain, Art Institute of Chicago. */
-    --scene-image: url("/scenes/night.jpg");
-    --scene-veil: rgba(4, 10, 14, 0.30);
 
     --code-bg: #121711;
     --code-fg: #e4e0d2;
@@ -126,6 +109,47 @@ body {
   color: var(--select-fg);
 }
 
+
+/* --- scenes ---------------------------------------------------------------
+   Each backdrop is a public domain painting or print; see
+   public/scenes/CREDITS.txt. The scene is independent of day/night: the theme
+   picks the paper stock, the scene picks what the paper lies on. Veil and blur
+   are tuned per image, because a pale print needs more dimming than a dark one
+   for the card to stay readable. */
+
+:root,
+:root[data-scene="moonlit"] {
+  /* Hiroshige, "No. 32: Seba", c. 1835 */
+  --scene-image: url("/scenes/moonlit.jpg");
+  --scene-base: #35434a;
+  --scene-veil: rgba(8, 16, 22, 0.32);
+  --scene-blur: 8px;
+}
+
+:root[data-scene="rain"] {
+  /* Caillebotte, "Paris Street; Rainy Day", 1877 */
+  --scene-image: url("/scenes/rain.jpg");
+  --scene-base: #8e8d88;
+  --scene-veil: rgba(20, 24, 26, 0.40);
+  --scene-blur: 10px;
+}
+
+:root[data-scene="mist"] {
+  /* Hiroshige, "Mishima: Morning Mist", c. 1833 */
+  --scene-image: url("/scenes/mist.jpg");
+  --scene-base: #9aa093;
+  --scene-veil: rgba(22, 26, 20, 0.42);
+  --scene-blur: 9px;
+}
+
+:root[data-scene="dusk"] {
+  /* Inness, "Moonrise", 1891 */
+  --scene-image: url("/scenes/dusk.jpg");
+  --scene-base: #3a2f23;
+  --scene-veil: rgba(16, 10, 6, 0.24);
+  --scene-blur: 9px;
+}
+
 /* --- the scene ----------------------------------------------------------- */
 
 .scene {
@@ -136,11 +160,12 @@ body {
   background: var(--scene-base);
 }
 
-/* Swap --scene-image for url("/scenes/<name>.png") when the art exists. The
-   inset and scale keep a blurred image from showing its edges. */
+/* The inset does two jobs: it hides the soft edge a blur leaves behind, and it
+   zooms enough to crop the white paper margin every print and painting carries,
+   which otherwise reads as a pale band along the top. */
 .scene-art {
   position: absolute;
-  inset: -4%;
+  inset: -10%;
   background-image: var(--scene-image);
   background-size: cover;
   background-position: center;

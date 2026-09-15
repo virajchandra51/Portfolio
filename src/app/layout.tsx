@@ -47,12 +47,12 @@ export default function RootLayout({
       <body
         className={`${sans.variable} ${serif.variable} ${mono.variable} font-sans antialiased`}
       >
-        {/* Applies a saved theme choice before first paint, so picking night on
-            a light system (or the reverse) does not flash the wrong palette. */}
+        {/* Applies saved theme and scene before first paint, so a choice that
+            differs from the default does not flash the wrong one. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.dataset.theme=t}}catch(e){}",
+              "try{var d=document.documentElement,t=localStorage.getItem('theme');if(t==='dark'||t==='light'){d.dataset.theme=t}var s=localStorage.getItem('scene');if(['moonlit','rain','mist','dusk'].indexOf(s)>-1){d.dataset.scene=s}}catch(e){}",
           }}
         />
         <Scene />

@@ -73,25 +73,34 @@ anyway. The mix persists in localStorage.
 
 ## The scenes
 
-Two backdrops, both public domain from the Art Institute of Chicago's open
-access collection. Day is Cazin's *Landscape* (c. 1895), night is Whistler's
-*Nocturne: Blue and Gold* (1872). Sources and links are in
-`public/scenes/CREDITS.txt`; the credit in the site footer is courtesy, not
-obligation, since neither has rights reserved.
+Four backdrops, switchable from the control at the top left, all public domain
+from the Art Institute of Chicago's open access collection:
 
-To use different art, drop a file in `public/scenes/` and point the variables at
-it in `src/app/globals.css` (day lives in `:root`, night in both the
-`[data-theme="dark"]` block and the `prefers-color-scheme` copy):
+| id | work |
+|---|---|
+| `moonlit` | Hiroshige, *No. 32: Seba*, c. 1835 |
+| `rain` | Caillebotte, *Paris Street; Rainy Day*, 1877 |
+| `mist` | Hiroshige, *Mishima: Morning Mist*, c. 1833 |
+| `dusk` | Inness, *Moonrise*, 1891 |
 
-```css
---scene-image: url("/scenes/day.jpg");
---scene-blur: 9px;                  /* how far back the art sits */
---scene-veil: rgba(28, 30, 20, 0.30);  /* how much is dimmed behind the card */
-```
+Scene and theme are separate axes: the theme picks the paper stock, the scene
+picks what the paper lies on. The choice persists in localStorage and is applied
+before first paint by the inline script in `layout.tsx`.
+
+To add one: drop the image in `public/scenes/`, add a row to `SCENES` in
+`src/lib/scenes.ts`, add a `:root[data-scene="<id>"]` block in `globals.css`,
+and add the id to the allow-list in the pre-paint script. Tune `--scene-veil`
+per image, because a pale print needs more dimming than a dark painting for the
+card to stay readable.
+
+Woodblock prints work better than photographs here: flat colour and strong
+composition survive being blurred, where a photo turns to mush. Note that every
+print carries a white paper margin, which is why `.scene-art` zooms past it.
 
 Do not use artwork you do not have the rights to. Museum open access
 (artic.edu, metmuseum.org, rijksmuseum.nl) is the easy legal source; a site
-having no licence notice means all rights reserved, not free to take.
+having no licence notice means all rights reserved, not free to take. The AIC
+IIIF endpoint returns 403 without a User-Agent header.
 
 ## Deploying
 

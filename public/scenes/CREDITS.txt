@@ -1,12 +1,19 @@
-Backdrops. Both public domain, from the Art Institute of Chicago's open access
-collection (is_public_domain: true via api.artic.edu).
+Backdrops. All public domain, from the Art Institute of Chicago's open access
+collection (is_public_domain: true via api.artic.edu). No rights reserved; the
+credit on the site is courtesy, not obligation.
 
-day.jpg    Jean Charles Cazin, "Landscape", c. 1895
-           https://www.artic.edu/artworks/874
+moonlit.jpg  Utagawa Hiroshige, "No. 32: Seba", from "Sixty-nine Stations of
+             the Kisokaido", c. 1835
+             https://www.artic.edu/artworks/11054
 
-night.jpg  James McNeill Whistler, "Nocturne: Blue and Gold-Southampton Water",
-           1872
-           https://www.artic.edu/artworks/56905
+rain.jpg     Gustave Caillebotte, "Paris Street; Rainy Day", 1877
+             https://www.artic.edu/artworks/20684
 
-Resized and recompressed for the web. No rights reserved; the credit on the
-site is courtesy, not obligation.
+mist.jpg     Utagawa Hiroshige, "Mishima: Morning Mist", from "Fifty-three
+             Stations of the Tokaido", c. 1833
+             https://www.artic.edu/artworks/10926
+
+dusk.jpg     George Inness, "Moonrise", 1891
+             https://www.artic.edu/artworks/64754
+
+Resized and recompressed for the web.
