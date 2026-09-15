@@ -345,3 +345,23 @@ body {
     display: none;
   }
 }
+
+/* Sound control bars, animated only while audio is actually playing. */
+.wave-bar {
+  animation: wave 0.75s ease-in-out infinite alternate;
+}
+
+@keyframes wave {
+  0% {
+    transform: scaleY(0.45);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-bar {
+    animation: none;
+  }
+}
