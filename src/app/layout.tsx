@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Chrome from "@/components/Chrome";
-import Footer from "@/components/Footer";
-import Postcard from "@/components/Postcard";
 import Scene from "@/components/Scene";
+import Stage from "@/components/Stage";
 import { site } from "@/lib/site";
 
 const sans = DM_Sans({
@@ -56,11 +54,7 @@ export default function RootLayout({
           }}
         />
         <Scene />
-        <Chrome />
-        <div className="mx-auto flex min-h-dvh w-full max-w-[56rem] flex-col justify-center px-4 py-16 md:px-8">
-          <Postcard>{children}</Postcard>
-          <Footer />
-        </div>
+        <Stage>{children}</Stage>
       </body>
     </html>
   );

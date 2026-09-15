@@ -1,10 +1,22 @@
 // The backdrops. Each is a public domain painting or print; sources are in
 // public/scenes/CREDITS.txt. The scene is independent of day/night: the theme
 // picks the paper stock, the scene picks what the paper is lying on.
+export type SceneMix = {
+  rain: number;
+  leaves: number;
+  water: number;
+  thunder: boolean;
+};
+
 export type Scene = {
   id: string;
   label: string;
   note: string;
+  // One line of mood, shown under the name in the picker.
+  mood: string;
+  // Every scene sounds like itself. The same three loops are always playing;
+  // only their levels change, so switching scene is a fade, not a reload.
+  mix: SceneMix;
   // A layered scene is drawn as parallax planes from these files, back to
   // front. A flat scene is a single --scene-image set in globals.css.
   layers?: string[];
@@ -15,6 +27,8 @@ export const SCENES: Scene[] = [
     id: "forest",
     label: "Forest",
     note: "ansimuz, CC0",
+    mood: "Warm and close",
+    mix: { rain: 0.45, leaves: 0.75, water: 0.12, thunder: false },
     layers: [
       "/scenes/forest/1-back.png",
       "/scenes/forest/2-middle.png",
@@ -26,6 +40,8 @@ export const SCENES: Scene[] = [
     id: "snow",
     label: "Snowy summits",
     note: "CraftPix, OGA-BY",
+    mood: "Above the treeline",
+    mix: { rain: 0, leaves: 0.55, water: 0, thunder: false },
     layers: [
       "/scenes/snow/1-back.png",
       "/scenes/snow/2-mid.png",
@@ -33,14 +49,16 @@ export const SCENES: Scene[] = [
       "/scenes/snow/4-front.png",
     ],
   },
-  { id: "moonlit", label: "Moonlit river", note: "Hiroshige, 1835" },
-  { id: "rain", label: "Rainy street", note: "Caillebotte, 1877" },
-  { id: "mist", label: "Morning mist", note: "Hiroshige, 1833" },
-  { id: "dusk", label: "Dusk", note: "Inness, 1891" },
+  { id: "moonlit", label: "Moonlit river", note: "Hiroshige, 1835" , mood: "Moon on the water" , mix: { rain: 0, leaves: 0.3, water: 0.7, thunder: false } },
+  { id: "rain", label: "Rainy street", note: "Caillebotte, 1877" , mood: "Wet streets" , mix: { rain: 0.9, leaves: 0.15, water: 0.35, thunder: true } },
+  { id: "mist", label: "Morning mist", note: "Hiroshige, 1833" , mood: "Before the day starts" , mix: { rain: 0.12, leaves: 0.45, water: 0.3, thunder: false } },
+  { id: "dusk", label: "Dusk", note: "Inness, 1891" , mood: "Last of the light" , mix: { rain: 0, leaves: 0.5, water: 0.1, thunder: false } },
 ];
 
 export const DEFAULT_SCENE = "forest";
 export const SCENE_KEY = "scene";
+
+export const thumbFor = (id: string) => `/scenes/thumbs/${id}.jpg`;
 
 export function isScene(v: unknown): v is string {
   return typeof v === "string" && SCENES.some((s) => s.id === v);

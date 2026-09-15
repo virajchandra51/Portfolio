@@ -181,7 +181,27 @@ body {
   background-image: var(--scene-image);
   background-size: cover;
   background-position: center;
+  filter: blur(0);
+  transition: filter 500ms ease;
+}
+
+/* The scene is the page. It only softens while the card is over it. */
+:root[data-card="open"] .scene-art {
   filter: blur(var(--scene-blur));
+}
+
+:root[data-card="open"] .plane {
+  filter: blur(5px);
+}
+
+.plane {
+  filter: blur(0);
+}
+
+/* "Pause motion" in the settings panel. */
+:root[data-motion="off"] .plane {
+  animation-play-state: paused;
+  transition: none;
 }
 
 .scene-veil {
@@ -451,4 +471,17 @@ body {
     transition: none;
     transform: none;
   }
+}
+
+/* Everything is meant to fit the viewport: the card scrolls inside itself
+   rather than scrolling the page out from under the scene. */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.plane,
+.scene-art {
+  transition: filter 500ms ease;
 }

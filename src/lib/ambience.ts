@@ -1,20 +1,13 @@
 // A small Web Audio mixer for the ambience.
 //
 // Browsers refuse to start audio without a gesture, so nothing is fetched or
-// decoded until the visitor actually asks for sound. After that, each layer is
-// a looping buffer behind its own gain node, and thunder is a one shot fired on
-// a random timer.
+// decoded until the visitor asks for sound. After that, three loops play
+// continuously behind their own gain nodes and the scene only changes their
+// levels, so switching scene is a fade rather than a reload. Thunder is a one
+// shot on a random timer, and only in scenes that want it.
+import type { SceneMix } from "@/lib/scenes";
 
 export type LayerName = "rain" | "leaves" | "water";
-
-export type Mix = Record<LayerName | "master", number>;
-
-export const DEFAULT_MIX: Mix = {
-  master: 0.55,
-  rain: 0.7,
-  leaves: 0.35,
-  water: 0.25,
-};
 
 const FILES: Record<LayerName, string> = {
   rain: "/audio/rain.mp3",
@@ -23,29 +16,24 @@ const FILES: Record<LayerName, string> = {
 };
 
 const THUNDER_FILE = "/audio/thunder.mp3";
-const STORAGE_KEY = "ambience-mix";
+const MASTER_KEY = "ambience-master";
+export const DEFAULT_MASTER = 0.6;
 
-export function loadMix(): Mix {
+export function loadMaster(): number {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { ...DEFAULT_MIX };
-    const parsed = JSON.parse(raw) as Partial<Mix>;
-    return {
-      master: clamp(parsed.master ?? DEFAULT_MIX.master),
-      rain: clamp(parsed.rain ?? DEFAULT_MIX.rain),
-      leaves: clamp(parsed.leaves ?? DEFAULT_MIX.leaves),
-      water: clamp(parsed.water ?? DEFAULT_MIX.water),
-    };
+    const raw = localStorage.getItem(MASTER_KEY);
+    const n = raw === null ? NaN : Number(raw);
+    return Number.isFinite(n) ? clamp(n) : DEFAULT_MASTER;
   } catch {
-    return { ...DEFAULT_MIX };
+    return DEFAULT_MASTER;
   }
 }
 
-export function saveMix(mix: Mix) {
+export function saveMaster(v: number) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(mix));
+    localStorage.setItem(MASTER_KEY, String(v));
   } catch {
-    // Storage blocked. The mix just will not survive a reload.
+    // Storage blocked. The level just will not survive a reload.
   }
 }
 
@@ -57,23 +45,25 @@ export class Ambience {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
   private gains = new Map<LayerName, GainNode>();
-  private sources = new Map<LayerName, AudioBufferSourceNode>();
   private thunderBuffer: AudioBuffer | null = null;
   private thunderTimer: number | null = null;
-  private mix: Mix;
+  private mix: SceneMix;
+  private masterLevel: number;
 
-  constructor(mix: Mix) {
+  constructor(mix: SceneMix, masterLevel: number) {
     this.mix = { ...mix };
+    this.masterLevel = masterLevel;
   }
 
-  get started() {
-    return this.ctx !== null;
+  get running() {
+    return this.ctx !== null && this.ctx.state === "running";
   }
 
   // Must be called from a user gesture.
   async start() {
     if (this.ctx) {
       await this.ctx.resume();
+      this.scheduleThunder();
       return;
     }
     const Ctor =
@@ -84,7 +74,7 @@ export class Ambience {
     this.ctx = ctx;
 
     const master = ctx.createGain();
-    master.gain.value = this.mix.master;
+    master.gain.value = this.masterLevel;
     master.connect(ctx.destination);
     this.master = master;
 
@@ -105,70 +95,67 @@ export class Ambience {
       src.connect(gain);
       src.start();
       this.gains.set(name, gain);
-      this.sources.set(name, src);
     });
 
     this.thunderBuffer = await fetchBuffer(ctx, THUNDER_FILE);
     this.scheduleThunder();
   }
 
-  setLayer(name: LayerName, value: number) {
-    this.mix[name] = clamp(value);
-    const gain = this.gains.get(name);
-    if (gain && this.ctx) {
-      gain.gain.setTargetAtTime(this.mix[name], this.ctx.currentTime, 0.08);
-    }
+  // Called when the scene changes. Fades every layer to the new levels.
+  setSceneMix(mix: SceneMix) {
+    this.mix = { ...mix };
+    const ctx = this.ctx;
+    if (!ctx) return;
+    (Object.keys(FILES) as LayerName[]).forEach((name) => {
+      const gain = this.gains.get(name);
+      if (gain) gain.gain.setTargetAtTime(this.mix[name], ctx.currentTime, 0.5);
+    });
+    this.scheduleThunder();
   }
 
   setMaster(value: number) {
-    this.mix.master = clamp(value);
+    this.masterLevel = clamp(value);
     if (this.master && this.ctx) {
-      this.master.gain.setTargetAtTime(this.mix.master, this.ctx.currentTime, 0.08);
+      this.master.gain.setTargetAtTime(
+        this.masterLevel,
+        this.ctx.currentTime,
+        0.08
+      );
     }
   }
 
-  getMix(): Mix {
-    return { ...this.mix };
-  }
-
-  // Thunder only makes sense under rain, and only now and then.
   private scheduleThunder() {
     if (this.thunderTimer !== null) window.clearTimeout(this.thunderTimer);
-    const wait = 28000 + Math.random() * 62000;
+    this.thunderTimer = null;
+    if (!this.mix.thunder) return;
+    const wait = 26000 + Math.random() * 60000;
     this.thunderTimer = window.setTimeout(() => {
       this.playThunder();
       this.scheduleThunder();
     }, wait);
   }
 
-  playThunder() {
+  private playThunder() {
     const ctx = this.ctx;
     const buffer = this.thunderBuffer;
-    if (!ctx || !buffer || !this.master) return;
-    if (this.mix.rain < 0.08) return;
+    if (!ctx || !buffer || !this.master || !this.mix.thunder) return;
     const src = ctx.createBufferSource();
     src.buffer = buffer;
     const gain = ctx.createGain();
-    // Quieter when the rain is light, so it never arrives out of nowhere.
-    gain.gain.value = 0.35 + this.mix.rain * 0.45;
+    gain.gain.value = 0.35 + this.mix.rain * 0.4;
     src.connect(gain);
     gain.connect(this.master);
     src.start();
   }
 
   async suspend() {
+    if (this.thunderTimer !== null) window.clearTimeout(this.thunderTimer);
+    this.thunderTimer = null;
     await this.ctx?.suspend();
   }
 
   destroy() {
     if (this.thunderTimer !== null) window.clearTimeout(this.thunderTimer);
-    this.sources.forEach((s) => {
-      try {
-        s.stop();
-      } catch {
-        // Already stopped.
-      }
-    });
     this.ctx?.close();
     this.ctx = null;
   }

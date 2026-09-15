@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <Preloader />
 
-      <div className="grid gap-10 md:grid-cols-[1.35fr_1fr] md:gap-12">
+      <div className="grid gap-7 md:grid-cols-[1.35fr_1fr] md:gap-10">
         <section>
           <h1 className="display text-[2.1rem] md:text-[2.6rem]">
             hi, i&apos;m viraj chandra.
@@ -25,12 +25,12 @@ export default function Home() {
             pull up a chair.
           </p>
 
-          <div className="mt-6 space-y-4 text-[0.95rem] leading-[1.75] text-body">
+          <div className="mt-5 space-y-3 text-[0.92rem] leading-[1.7] text-body">
             <p>
               i build backend and data infrastructure at google, and teach
-              competitive programming to a few thousand people who are trying
-              to get better at it. i like problems that have a correct answer,
-              and systems where you can prove you found it.
+              competitive programming to a few thousand people. i like problems
+              that have a correct answer, and systems where you can prove you
+              found it.
             </p>
             <p>
               lately that means agents and data discovery at work, leading
@@ -57,7 +57,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-7 flex flex-wrap items-center gap-4">
+          <div className="mt-5 flex flex-wrap items-center gap-4">
             <Link
               href="/journey"
               className="inline-flex items-center gap-2 rounded bg-cta px-5 py-3 text-[0.85rem] text-cta-ink transition-opacity hover:opacity-90"
@@ -82,7 +82,7 @@ export default function Home() {
             </div>
           </div>
 
-          <dl className="mt-5 space-y-4">
+          <dl className="mt-4 space-y-3">
             {facts.map((f) => (
               <div key={f.org}>
                 <dt className="font-serif text-[1.05rem] text-fg">{f.org}</dt>
@@ -93,7 +93,7 @@ export default function Home() {
             ))}
           </dl>
 
-          <p className="mt-6 border-t border-rule pt-4 text-[0.78rem] leading-relaxed text-faint">
+          <p className="mt-4 border-t border-rule pt-3 text-[0.76rem] leading-relaxed text-faint">
             codeforces expert · codechef 5-star · leetcode guardian · icpc 2023
             regionalist
           </p>
