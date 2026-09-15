@@ -25,6 +25,12 @@ export type Scene = {
   // illustration: no tiling, no auto-drift, just the pointer parallax, so a
   // non-repeating image never shows its own seam or its edge.
   render?: "pixel" | "smooth";
+  // Doubles the drift speed on every plane, for a scene where the view is
+  // meant to be passing by rather than just breathing.
+  fast?: boolean;
+  // Draws an original CSS window frame over the planes: no image asset, just
+  // borders and gradients in globals.css. See .train-frame.
+  frame?: "train-window";
 };
 
 export const SCENES: Scene[] = [
@@ -42,11 +48,16 @@ export const SCENES: Scene[] = [
     ],
   },
   {
-    id: "snow",
-    label: "Snowy summits",
-    note: "CraftPix, OGA-BY",
-    mood: "Above the treeline",
-    mix: { rain: 0, leaves: 0.55, water: 0, thunder: false },
+    id: "train",
+    label: "Snow train",
+    note: "CraftPix layers, original frame",
+    mood: "Watching it go by",
+    // No train recording exists among the licensed loops, so this leans on
+    // wind rather than pretending there is one. Honest approximation, not a
+    // real train sound.
+    mix: { rain: 0, leaves: 0.4, water: 0, thunder: false },
+    fast: true,
+    frame: "train-window",
     layers: [
       "/scenes/snow/1-back.png",
       "/scenes/snow/2-mid.png",

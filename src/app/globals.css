@@ -467,6 +467,21 @@ body {
   animation: drift 140s linear infinite;
 }
 
+/* The view outside a moving train: the same planes, drifting roughly twice as
+   fast, so it reads as passing scenery rather than a breathing backdrop. */
+.plane-fast.plane-1 {
+  animation-duration: 120s;
+}
+.plane-fast.plane-2 {
+  animation-duration: 80s;
+}
+.plane-fast.plane-3 {
+  animation-duration: 55s;
+}
+.plane-fast.plane-4 {
+  animation-duration: 150s;
+}
+
 /* A single wide illustration rather than a repeating strip: no tiling (a
    repeat would show its own seam), no auto-drift (nothing to loop into), just
    the pointer parallax. Smooth upscaling too, since this is not pixel art. */
@@ -485,6 +500,97 @@ body {
   to {
     background-position-x: -1600px;
   }
+}
+
+/* --- rain overlay ----------------------------------------------------------
+   Falling streaks, not anyone's artwork: two repeating diagonal gradients at
+   different scales and speeds, scrolled by animating background-position.
+   Opacity is driven by --rain, set from that scene's own audio mix in
+   Scene.tsx, so the rain you see is the same rain you hear turned up. */
+
+.rain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: calc(var(--rain, 0) * 0.55);
+  background-image: repeating-linear-gradient(
+      78deg,
+      transparent 0,
+      transparent 2px,
+      rgba(255, 255, 255, 0.55) 2px,
+      transparent 3px,
+      transparent 34px
+    ),
+    repeating-linear-gradient(
+      74deg,
+      transparent 0,
+      transparent 1px,
+      rgba(255, 255, 255, 0.3) 1px,
+      transparent 2px,
+      transparent 20px
+    );
+  background-size: 140px 140px, 90px 90px;
+  animation: rainfall 0.45s linear infinite, rainfall-slow 0.7s linear infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes rainfall {
+  from {
+    background-position: 0 -140px, 0 0;
+  }
+  to {
+    background-position: -60px 0, 0 0;
+  }
+}
+
+@keyframes rainfall-slow {
+  from {
+    background-position: 0 0, 0 -90px;
+  }
+  to {
+    background-position: 0 0, -40px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rain-overlay {
+    display: none;
+  }
+}
+
+/* --- train window -----------------------------------------------------------
+   Original chrome, drawn in CSS: a beveled frame with one mullion, standing in
+   for the carriage interior around the view. No image asset. */
+
+.train-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --wood: #2c1c14;
+  --wood-light: #4a3225;
+  box-shadow:
+    inset 0 0 0 3vmin var(--wood),
+    inset 0 0 0 3.6vmin var(--wood-light),
+    inset 0 0 0 3.8vmin var(--wood);
+}
+
+.train-frame::before {
+  /* the vertical mullion, offset like a real compartment window */
+  content: "";
+  position: absolute;
+  top: 3vmin;
+  bottom: 3vmin;
+  left: 62%;
+  width: 2.6vmin;
+  background: linear-gradient(90deg, var(--wood) 0%, var(--wood-light) 45%, var(--wood) 100%);
+}
+
+.train-frame::after {
+  /* a soft interior vignette, as if the carriage itself is dim */
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 14vmin 2vmin rgba(10, 6, 4, 0.35);
 }
 
 @media (prefers-reduced-motion: reduce) {

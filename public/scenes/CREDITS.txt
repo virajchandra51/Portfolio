@@ -2,11 +2,12 @@ forest/    "Parallax Forest" by ansimuz. CC0 1.0, no rights reserved.
            https://opengameart.org/content/forest-background
            Four separated planes, drawn as parallax by src/components/Scene.tsx.
 
-snow/      "Snowy Summits Pixel Art Winter Background" by CraftPix.net
-           2D Game Assets. OGA-BY 3.0: free to use, attribution required,
-           which the site footer carries.
+snow/      Backdrop for the "train" scene. "Snowy Summits Pixel Art Winter
+           Background" by CraftPix.net 2D Game Assets. OGA-BY 3.0: free to
+           use, attribution required, which the site footer carries.
            https://opengameart.org/content/snowy-summits-pixel-art-winter-background
-           Four separated planes.
+           Four separated planes. The window frame around them is original
+           CSS (.train-frame in globals.css), not an image asset.
 
 underwater/ "Underwater World Parallax Backgrounds" by CraftPix.net
            2D Game Assets. OGA-BY 3.0: free to use, attribution required.

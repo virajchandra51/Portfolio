@@ -52,6 +52,10 @@ export default function Scene() {
 
   const scene = SCENES.find((s) => s.id === sceneId);
   const smooth = scene?.render === "smooth";
+  // Rain is drawn for every scene but scaled by that scene's own rain level,
+  // so it is the same physical thing the audio mixer is already turning up
+  // and down rather than a second, disconnected setting.
+  const rainLevel = scene?.mix.rain ?? 0;
 
   return (
     <div className="scene" aria-hidden="true">
@@ -59,7 +63,9 @@ export default function Scene() {
         scene.layers.map((src, i) => (
           <div
             key={src}
-            className={`plane plane-${i + 1} ${smooth ? "plane-smooth" : ""}`}
+            className={`plane plane-${i + 1} ${smooth ? "plane-smooth" : ""} ${
+              scene.fast ? "plane-fast" : ""
+            }`}
             style={{
               backgroundImage: `url("${src}")`,
               // Each plane shifts a different amount, which is the whole trick.
@@ -70,6 +76,13 @@ export default function Scene() {
       ) : (
         <div className="scene-art" />
       )}
+      {rainLevel > 0.05 && (
+        <div
+          className="rain-overlay"
+          style={{ ["--rain" as string]: Math.min(1, rainLevel) }}
+        />
+      )}
+      {scene?.frame === "train-window" && <div className="train-frame" />}
       <div className="scene-veil" />
     </div>
   );
