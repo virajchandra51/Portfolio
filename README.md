@@ -48,21 +48,24 @@ newest first, at `/writing/<filename>`.
 
 ## The ambience
 
-`./scripts/build-audio.sh` fetches four CC0 field recordings from Freesound and
-processes them into loops: gentle rain on leaves, wind in trees, birds in light
-rain, and one distant thunder strike. CC0 is a public domain dedication, so
-there is nothing to honour; the credits in `public/audio/CREDITS.txt` and the
-site footer are courtesy.
+`./scripts/build-audio.sh` fetches four CC0 recordings from Freesound and loops
+them: rain, leaves in wind, a lapping river, and one distant thunder strike.
+
+These are the same files rishwajeetsingh.com uses. Its about page credits every
+source and links straight to it, and all four are Creative Commons Zero 1.0, a
+public domain dedication with no rights reserved and no attribution required.
+Using the same free sources is fair; copying that site's own artwork would not
+be, which is why the scenes are museum open access instead.
 
 The script needs network and ffmpeg. The processed mp3s are committed, so a
 deploy never runs it.
 
-Two things in there are load-bearing and easy to break:
+Two things in there are load-bearing and fail silently if broken:
 
-- The loop is built by opening the source twice and crossfading its tail back
-  over its head. Doing the same with `asplit` starves the graph, and ffmpeg
-  writes an empty file with only "No filtered frames for output stream" in the
-  log.
+- The loop opens the source twice and crossfades its tail back over its head.
+  The wrap is source-continuous, so it is genuinely seamless. Doing the same
+  with `asplit` starves the graph and ffmpeg writes an empty file with only
+  "No filtered frames for output stream" in the log.
 - A filtergraph cannot contain literal newlines, so those strings stay on one
   line however long they get.
 

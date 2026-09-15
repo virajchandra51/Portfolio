@@ -25,7 +25,7 @@ export default function Footer() {
         <p className="mt-1 max-w-[22rem] text-[0.66rem] leading-relaxed text-seal-ink opacity-45">
           Backdrops: Hiroshige, Caillebotte and Inness, public domain via the
           Art Institute of Chicago. Ambience: CC0 field recordings by
-          Garuda1982, mudflea2, BurghRecords and morvei01 on Freesound.
+          VanEngelen, Sandermotions, ceich93 and Fission9 on Freesound.
         </p>
       </div>
     </footer>

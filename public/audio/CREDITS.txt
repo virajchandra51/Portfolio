@@ -2,16 +2,16 @@ Ambience sources. All Creative Commons Zero 1.0 (public domain
 dedication): no rights reserved, no attribution required. Credited here
 and in the site footer as courtesy.
 
-rain.mp3  "Gentle Rain on Leaves with Soft Wind" by Garuda1982
-          https://freesound.org/s/757276/  CC0 1.0
+rain.mp3  "Rain_Ambience.WAV" by VanEngelen
+          https://freesound.org/s/704579/  CC0 1.0
 
-wind.mp3  "Wind in Trees" by mudflea2
-          https://freesound.org/s/703033/  CC0 1.0
+leaves.mp3 "Leaves in wind.WAV" by Sandermotions
+          https://freesound.org/s/276294/  CC0 1.0
 
-birds.mp3 "Birds In Light Rain Ambience, Scotland" by BurghRecords
-          https://freesound.org/s/530898/  CC0 1.0
+water.mp3 "Water_Lapping_River.wav" by ceich93
+          https://freesound.org/s/318064/  CC0 1.0
 
-thunder.mp3 "Distant Thunder" by morvei01
-          https://freesound.org/s/352850/  CC0 1.0
+thunder.mp3 "Distant Thunder 3" by Fission9
+          https://freesound.org/s/581124/  CC0 1.0
 
 Trimmed, crossfade-looped and loudness-normalised by scripts/build-audio.sh.

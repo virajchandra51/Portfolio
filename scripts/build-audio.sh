@@ -18,15 +18,20 @@ TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 UA="Mozilla/5.0 (compatible; personal-site-build/1.0)"
 
+# The exact recordings rishwajeetsingh.com credits on its own about page, all
+# Creative Commons Zero 1.0: a public domain dedication, no rights reserved and
+# no attribution required. Their site links straight to each source, so these
+# are the same files rather than substitutes. We credit the recordists anyway.
+#
+# Their artwork is a different matter and is deliberately not used: it is their
+# own generated work with no licence offered, which means all rights reserved.
+#
 # name | freesound id | recordist | preview url | byte range | title
-# The rain source is 19 minutes and 27 MB. We only need a minute of it, and the
-# CDN honours Range, so we pull a slice from the middle instead of the lot.
-# MP3 frames are self-syncing, so a slice decodes on its own.
 SOURCES=(
-  "rain|757276|Garuda1982|https://cdn.freesound.org/previews/757/757276_2061858-hq.mp3|9000000-12000000|Gentle Rain on Leaves with Soft Wind"
-  "wind|703033|mudflea2|https://cdn.freesound.org/previews/703/703033_15236906-hq.mp3||Wind in Trees"
-  "birds|530898|BurghRecords|https://cdn.freesound.org/previews/530/530898_7241289-hq.mp3||Birds In Light Rain Ambience, Scotland"
-  "thunder|352850|morvei01|https://cdn.freesound.org/previews/352/352850_4866079-hq.mp3||Distant Thunder"
+  "rain|704579|VanEngelen|https://cdn.freesound.org/previews/704/704579_9285510-hq.mp3||Rain_Ambience.WAV"
+  "leaves|276294|Sandermotions|https://cdn.freesound.org/previews/276/276294_1402315-hq.mp3||Leaves in wind.WAV"
+  "water|318064|ceich93|https://cdn.freesound.org/previews/318/318064_4457609-hq.mp3||Water_Lapping_River.wav"
+  "thunder|581124|Fission9|https://cdn.freesound.org/previews/581/581124_9395330-hq.mp3||Distant Thunder 3"
 )
 
 echo "fetching sources"
@@ -39,6 +44,13 @@ for row in "${SOURCES[@]}"; do
   fi
   printf '  %-8s %6sk  %s by %s\n' "$name" \
     "$(( $(wc -c < "$TMP/$name.src.mp3") / 1024 ))" "$title" "$who"
+done
+
+echo "source durations"
+for row in "${SOURCES[@]}"; do
+  IFS='|' read -r name id who url range title <<<"$row"
+  printf '  %-8s %ss\n' "$name" \
+    "$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$TMP/$name.src.mp3" | cut -d. -f1)"
 done
 
 # Seamless loop: take a segment, then crossfade its tail back over its head so
@@ -59,22 +71,22 @@ loop() {
 }
 
 echo "building loops"
-loop rain    4 56 6     # a few seconds into the fetched slice
-loop wind   30 50 6
-loop birds  10 62 6
+loop rain    3 56 6
+loop leaves  5 56 6
+loop water   2 52 6
 
-# Thunder is a one shot, not a loop. The strike lands at ~180s in the source,
-# so we start just before it and keep the whole tail.
-ffmpeg -hide_banner -loglevel error -y -ss 178.5 -t 11 -i "$TMP/thunder.src.mp3" \
-  -af "afade=t=in:st=0:d=0.3,afade=t=out:st=8.5:d=2.5,loudnorm=I=-20:TP=-2" \
-  "$TMP/thunder.wav"
+# Thunder is a one shot and the source is already only 8s, so it is used whole
+# with a short fade at each end.
+ffmpeg -hide_banner -loglevel error -y -i "$TMP/thunder.src.mp3" \
+  -af "afade=t=in:st=0:d=0.15,afade=t=out:st=6.2:d=1.8,loudnorm=I=-20:TP=-2" \
+  -ar 44100 "$TMP/thunder.wav"
 
 echo "encoding"
-for f in rain wind birds thunder; do
+for f in rain leaves water thunder; do
   ffmpeg -hide_banner -loglevel error -y -i "$TMP/$f.wav" \
     -codec:a libmp3lame -b:a 112k -ac 2 "$OUT/$f.mp3"
 done
-rm -f "$OUT/pad.mp3"
+rm -f "$OUT/pad.mp3" "$OUT/wind.mp3" "$OUT/birds.mp3"
 
 {
   echo "Ambience sources. All Creative Commons Zero 1.0 (public domain"

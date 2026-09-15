@@ -26,8 +26,8 @@ function Wave({ playing }: { playing: boolean }) {
 const SLIDERS: { key: LayerName | "master"; label: string }[] = [
   { key: "master", label: "Volume" },
   { key: "rain", label: "Rain" },
-  { key: "wind", label: "Wind" },
-  { key: "birds", label: "Birds" },
+  { key: "leaves", label: "Leaves" },
+  { key: "water", label: "Water" },
 ];
 
 export default function SoundControl() {
@@ -96,7 +96,7 @@ export default function SoundControl() {
               setMix(DEFAULT_MIX);
               saveMix(DEFAULT_MIX);
               engine.current?.setMaster(DEFAULT_MIX.master);
-              (["rain", "wind", "birds"] as LayerName[]).forEach((n) =>
+              (["rain", "leaves", "water"] as LayerName[]).forEach((n) =>
                 engine.current?.setLayer(n, DEFAULT_MIX[n])
               );
             }}
