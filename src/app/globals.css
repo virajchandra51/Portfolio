@@ -30,13 +30,12 @@
   --cta-ink: #f1ecdf;
 
   /* the scene itself */
-  --scene-base: #2b3b4e;
-  --scene-blur: 0px;
-  --scene-image:
-    radial-gradient(130% 85% at 50% 112%, #15301f 0%, rgba(21, 48, 31, 0) 62%),
-    radial-gradient(70% 55% at 22% 18%, rgba(240, 201, 142, 0.6), rgba(240, 201, 142, 0) 62%),
-    linear-gradient(180deg, #33445a 0%, #6a6660 34%, #a9855f 58%, #46503c 100%);
-  --scene-veil: rgba(12, 20, 14, 0.28);
+  --scene-base: #6b6a5b;
+  --scene-blur: 9px;
+  /* Cazin, "Landscape", c. 1895. Public domain, Art Institute of Chicago.
+     See public/scenes/CREDITS.txt. */
+  --scene-image: url("/scenes/day.jpg");
+  --scene-veil: rgba(28, 30, 20, 0.30);
 
   /* code, for blog posts */
   --code-bg: #1d2a21;
@@ -65,12 +64,11 @@
   --cta-bg: #c9bd86;
   --cta-ink: #161c16;
 
-  --scene-base: #0c1420;
-  --scene-image:
-    radial-gradient(130% 85% at 50% 112%, #060f09 0%, rgba(6, 15, 9, 0) 62%),
-    radial-gradient(70% 55% at 22% 18%, rgba(120, 146, 176, 0.35), rgba(120, 146, 176, 0) 62%),
-    linear-gradient(180deg, #101a2a 0%, #1b2430 38%, #2a2b2c 62%, #141a16 100%);
-  --scene-veil: rgba(4, 8, 6, 0.42);
+  --scene-base: #39423f;
+  /* Whistler, "Nocturne: Blue and Gold-Southampton Water", 1872. Public
+     domain, Art Institute of Chicago. */
+  --scene-image: url("/scenes/night.jpg");
+  --scene-veil: rgba(4, 10, 14, 0.30);
 
   --code-bg: #121711;
   --code-fg: #e4e0d2;
@@ -98,12 +96,11 @@
     --cta-bg: #c9bd86;
     --cta-ink: #161c16;
 
-    --scene-base: #0c1420;
-    --scene-image:
-      radial-gradient(130% 85% at 50% 112%, #060f09 0%, rgba(6, 15, 9, 0) 62%),
-      radial-gradient(70% 55% at 22% 18%, rgba(120, 146, 176, 0.35), rgba(120, 146, 176, 0) 62%),
-      linear-gradient(180deg, #101a2a 0%, #1b2430 38%, #2a2b2c 62%, #141a16 100%);
-    --scene-veil: rgba(4, 8, 6, 0.42);
+    --scene-base: #39423f;
+    /* Whistler, "Nocturne: Blue and Gold-Southampton Water", 1872. Public
+       domain, Art Institute of Chicago. */
+    --scene-image: url("/scenes/night.jpg");
+    --scene-veil: rgba(4, 10, 14, 0.30);
 
     --code-bg: #121711;
     --code-fg: #e4e0d2;

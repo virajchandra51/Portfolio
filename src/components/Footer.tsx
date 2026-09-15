@@ -18,9 +18,16 @@ export default function Footer() {
           </a>
         ))}
       </div>
-      <p className="text-[0.72rem] text-seal-ink opacity-60">
-        {site.name} · 2026
-      </p>
+      <div className="text-right">
+        <p className="text-[0.72rem] text-seal-ink opacity-60">
+          {site.name} · 2026
+        </p>
+        <p className="mt-1 max-w-[22rem] text-[0.66rem] leading-relaxed text-seal-ink opacity-45">
+          Backdrops: Cazin, <i>Landscape</i> (c. 1895) and Whistler,{" "}
+          <i>Nocturne: Blue and Gold</i> (1872). Art Institute of Chicago,
+          public domain.
+        </p>
+      </div>
     </footer>
   );
 }

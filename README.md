@@ -62,18 +62,27 @@ Playback lives in `src/lib/ambience.ts` (a Web Audio mixer) and
 or decoded until someone actually asks for sound, because browsers block
 autoplay anyway. The mix persists in localStorage.
 
-## The scene
+## The scenes
 
-The backdrop is a CSS gradient placeholder. To use real art, drop the file in
-`public/scenes/` and point `--scene-image` at it in `src/app/globals.css`:
+Two backdrops, both public domain from the Art Institute of Chicago's open
+access collection. Day is Cazin's *Landscape* (c. 1895), night is Whistler's
+*Nocturne: Blue and Gold* (1872). Sources and links are in
+`public/scenes/CREDITS.txt`; the credit in the site footer is courtesy, not
+obligation, since neither has rights reserved.
+
+To use different art, drop a file in `public/scenes/` and point the variables at
+it in `src/app/globals.css` (day lives in `:root`, night in both the
+`[data-theme="dark"]` block and the `prefers-color-scheme` copy):
 
 ```css
---scene-image: url("/scenes/desk-night.png");
---scene-blur: 14px;   /* 0 suits the gradient; a photo or pixel scene wants some */
+--scene-image: url("/scenes/day.jpg");
+--scene-blur: 9px;                  /* how far back the art sits */
+--scene-veil: rgba(28, 30, 20, 0.30);  /* how much is dimmed behind the card */
 ```
 
-There is one scene today, so there is no scene switcher yet. `Chrome.tsx` is
-where it would go, next to the day/night toggle.
+Do not use artwork you do not have the rights to. Museum open access
+(artic.edu, metmuseum.org, rijksmuseum.nl) is the easy legal source; a site
+having no licence notice means all rights reserved, not free to take.
 
 ## Deploying
 

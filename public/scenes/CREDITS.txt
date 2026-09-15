@@ -1,0 +1,12 @@
+Backdrops. Both public domain, from the Art Institute of Chicago's open access
+collection (is_public_domain: true via api.artic.edu).
+
+day.jpg    Jean Charles Cazin, "Landscape", c. 1895
+           https://www.artic.edu/artworks/874
+
+night.jpg  James McNeill Whistler, "Nocturne: Blue and Gold-Southampton Water",
+           1872
+           https://www.artic.edu/artworks/56905
+
+Resized and recompressed for the web. No rights reserved; the credit on the
+site is courtesy, not obligation.
