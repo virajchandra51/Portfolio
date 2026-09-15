@@ -117,6 +117,13 @@ body {
    are tuned per image, because a pale print needs more dimming than a dark one
    for the card to stay readable. */
 
+/* Layered pixel-art scene; the planes are drawn by Scene.tsx, so only the
+   fallback colour and the veil are set here. */
+:root[data-scene="forest"] {
+  --scene-base: #2a1d18;
+  --scene-veil: rgba(14, 8, 6, 0.22);
+}
+
 :root,
 :root[data-scene="moonlit"] {
   /* Hiroshige, "No. 32: Seba", c. 1835 */
@@ -385,5 +392,58 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .wave-bar {
     animation: none;
+  }
+}
+
+/* --- layered scenes -------------------------------------------------------
+   Pixel-art planes that tile horizontally and shift by different amounts, which
+   is what reads as depth. Each plane drifts on its own so the scene still
+   breathes when nobody is moving the pointer. */
+
+.plane {
+  position: absolute;
+  inset: -8% -12%;
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  background-size: auto 112%;
+  image-rendering: pixelated;
+  will-change: transform;
+  transform: translate3d(
+    calc(var(--px, 0) * var(--depth, 0.4) * -70px),
+    calc(var(--py, 0) * var(--depth, 0.4) * -26px),
+    0
+  );
+  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.plane-1 {
+  animation: drift 240s linear infinite;
+}
+.plane-2 {
+  animation: drift 160s linear infinite;
+}
+.plane-3 {
+  animation: drift 110s linear infinite;
+}
+.plane-4 {
+  /* Light shafts: brighter and slower than the trees they fall through. */
+  opacity: 0.85;
+  animation: drift 300s linear infinite;
+}
+
+@keyframes drift {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -1600px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plane {
+    animation: none;
+    transition: none;
+    transform: none;
   }
 }

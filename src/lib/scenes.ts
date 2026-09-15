@@ -5,16 +5,30 @@ export type Scene = {
   id: string;
   label: string;
   note: string;
+  // A layered scene is drawn as parallax planes from these files, back to
+  // front. A flat scene is a single --scene-image set in globals.css.
+  layers?: string[];
 };
 
 export const SCENES: Scene[] = [
+  {
+    id: "forest",
+    label: "Forest",
+    note: "ansimuz, CC0",
+    layers: [
+      "/scenes/forest/1-back.png",
+      "/scenes/forest/2-middle.png",
+      "/scenes/forest/3-front.png",
+      "/scenes/forest/4-lights.png",
+    ],
+  },
   { id: "moonlit", label: "Moonlit river", note: "Hiroshige, 1835" },
   { id: "rain", label: "Rainy street", note: "Caillebotte, 1877" },
   { id: "mist", label: "Morning mist", note: "Hiroshige, 1833" },
   { id: "dusk", label: "Dusk", note: "Inness, 1891" },
 ];
 
-export const DEFAULT_SCENE = "moonlit";
+export const DEFAULT_SCENE = "forest";
 export const SCENE_KEY = "scene";
 
 export function isScene(v: unknown): v is string {

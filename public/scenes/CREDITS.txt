@@ -1,4 +1,8 @@
-Backdrops. All public domain, from the Art Institute of Chicago's open access
+forest/    "Parallax Forest" by ansimuz. CC0 1.0, no rights reserved.
+           https://opengameart.org/content/forest-background
+           Four separated planes, drawn as parallax by src/components/Scene.tsx.
+
+Painted backdrops. All public domain, from the Art Institute of Chicago's open access
 collection (is_public_domain: true via api.artic.edu). No rights reserved; the
 credit on the site is courtesy, not obligation.
 
