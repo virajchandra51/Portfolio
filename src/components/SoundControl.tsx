@@ -27,7 +27,7 @@ const SLIDERS: { key: LayerName | "master"; label: string }[] = [
   { key: "master", label: "Volume" },
   { key: "rain", label: "Rain" },
   { key: "wind", label: "Wind" },
-  { key: "music", label: "Music" },
+  { key: "birds", label: "Birds" },
 ];
 
 export default function SoundControl() {
@@ -96,7 +96,7 @@ export default function SoundControl() {
               setMix(DEFAULT_MIX);
               saveMix(DEFAULT_MIX);
               engine.current?.setMaster(DEFAULT_MIX.master);
-              (["rain", "wind", "music"] as LayerName[]).forEach((n) =>
+              (["rain", "wind", "birds"] as LayerName[]).forEach((n) =>
                 engine.current?.setLayer(n, DEFAULT_MIX[n])
               );
             }}
@@ -105,7 +105,7 @@ export default function SoundControl() {
             Reset mix
           </button>
           <p className="mt-3 text-[0.68rem] leading-relaxed opacity-55">
-            Rain, wind and the chords are generated from scratch, not sampled.
+            Field recordings, all CC0. Credits in the footer.
           </p>
         </div>
       )}

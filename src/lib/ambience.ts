@@ -5,21 +5,21 @@
 // a looping buffer behind its own gain node, and thunder is a one shot fired on
 // a random timer.
 
-export type LayerName = "rain" | "wind" | "music";
+export type LayerName = "rain" | "wind" | "birds";
 
 export type Mix = Record<LayerName | "master", number>;
 
 export const DEFAULT_MIX: Mix = {
   master: 0.55,
   rain: 0.7,
-  wind: 0.35,
-  music: 0,
+  wind: 0.3,
+  birds: 0.35,
 };
 
 const FILES: Record<LayerName, string> = {
   rain: "/audio/rain.mp3",
   wind: "/audio/wind.mp3",
-  music: "/audio/pad.mp3",
+  birds: "/audio/birds.mp3",
 };
 
 const THUNDER_FILE = "/audio/thunder.mp3";
@@ -34,7 +34,7 @@ export function loadMix(): Mix {
       master: clamp(parsed.master ?? DEFAULT_MIX.master),
       rain: clamp(parsed.rain ?? DEFAULT_MIX.rain),
       wind: clamp(parsed.wind ?? DEFAULT_MIX.wind),
-      music: clamp(parsed.music ?? DEFAULT_MIX.music),
+      birds: clamp(parsed.birds ?? DEFAULT_MIX.birds),
     };
   } catch {
     return { ...DEFAULT_MIX };
