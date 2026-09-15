@@ -124,6 +124,11 @@ body {
   --scene-veil: rgba(14, 8, 6, 0.22);
 }
 
+:root[data-scene="snow"] {
+  --scene-base: #b9c6d2;
+  --scene-veil: rgba(28, 42, 58, 0.26);
+}
+
 :root,
 :root[data-scene="moonlit"] {
   /* Hiroshige, "No. 32: Seba", c. 1835 */

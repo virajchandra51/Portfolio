@@ -22,6 +22,17 @@ export const SCENES: Scene[] = [
       "/scenes/forest/4-lights.png",
     ],
   },
+  {
+    id: "snow",
+    label: "Snowy summits",
+    note: "CraftPix, OGA-BY",
+    layers: [
+      "/scenes/snow/1-back.png",
+      "/scenes/snow/2-mid.png",
+      "/scenes/snow/3-near.png",
+      "/scenes/snow/4-front.png",
+    ],
+  },
   { id: "moonlit", label: "Moonlit river", note: "Hiroshige, 1835" },
   { id: "rain", label: "Rainy street", note: "Caillebotte, 1877" },
   { id: "mist", label: "Morning mist", note: "Hiroshige, 1833" },

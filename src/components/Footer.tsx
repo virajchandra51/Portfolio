@@ -23,7 +23,8 @@ export default function Footer() {
           {site.name} · 2026
         </p>
         <p className="mt-1 max-w-[22rem] text-[0.66rem] leading-relaxed text-seal-ink opacity-45">
-          Forest by ansimuz (CC0). Painted backdrops: Hiroshige, Caillebotte
+          Forest by ansimuz (CC0), Snowy Summits by CraftPix (OGA-BY 3.0).
+          Painted backdrops: Hiroshige, Caillebotte
           and Inness, public domain via the Art Institute of Chicago. Ambience:
           CC0 recordings by VanEngelen, Sandermotions, ceich93 and Fission9.
         </p>
