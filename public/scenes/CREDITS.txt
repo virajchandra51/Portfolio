@@ -22,14 +22,4 @@ moonlit.jpg  Utagawa Hiroshige, "No. 32: Seba", from "Sixty-nine Stations of
              the Kisokaido", c. 1835
              https://www.artic.edu/artworks/11054
 
-rain.jpg     Gustave Caillebotte, "Paris Street; Rainy Day", 1877
-             https://www.artic.edu/artworks/20684
-
-mist.jpg     Utagawa Hiroshige, "Mishima: Morning Mist", from "Fifty-three
-             Stations of the Tokaido", c. 1833
-             https://www.artic.edu/artworks/10926
-
-dusk.jpg     George Inness, "Moonrise", 1891
-             https://www.artic.edu/artworks/64754
-
 Resized and recompressed for the web.

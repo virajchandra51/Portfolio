@@ -133,10 +133,9 @@ export default function SceneSwitcher() {
 
             <p className="mt-7 border-t border-rule pt-4 text-[0.74rem] leading-relaxed text-faint">
               Forest by ansimuz (CC0). Snowy Summits and Underwater Cave by
-              CraftPix (OGA-BY 3.0). Painted scenes by Hiroshige, Caillebotte
-              and Inness, public domain via the Art Institute of Chicago.
-              Ambience: CC0 recordings by VanEngelen, Sandermotions, ceich93
-              and Fission9 on Freesound.
+              CraftPix (OGA-BY 3.0). Moonlit River by Hiroshige, public domain
+              via the Art Institute of Chicago. Ambience: CC0 recordings by
+              VanEngelen, Sandermotions, ceich93 and Fission9 on Freesound.
             </p>
           </div>
         </div>

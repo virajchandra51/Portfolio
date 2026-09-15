@@ -55,9 +55,6 @@ export const SCENES: Scene[] = [
     ],
   },
   { id: "moonlit", label: "Moonlit river", note: "Hiroshige, 1835" , mood: "Moon on the water" , mix: { rain: 0, leaves: 0.3, water: 0.7, thunder: false } },
-  { id: "rain", label: "Rainy street", note: "Caillebotte, 1877" , mood: "Wet streets" , mix: { rain: 0.9, leaves: 0.15, water: 0.35, thunder: true } },
-  { id: "mist", label: "Morning mist", note: "Hiroshige, 1833" , mood: "Before the day starts" , mix: { rain: 0.12, leaves: 0.45, water: 0.3, thunder: false } },
-  { id: "dusk", label: "Dusk", note: "Inness, 1891" , mood: "Last of the light" , mix: { rain: 0, leaves: 0.5, water: 0.1, thunder: false } },
   {
     id: "underwater",
     label: "Underwater cave",
