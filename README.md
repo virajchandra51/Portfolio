@@ -1,120 +1,36 @@
-# virajchandra.in
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Personal site. Next.js 14 (app router) exported to static HTML and published on
-Netlify. One repo, no CMS.
+## Getting Started
 
-A postcard on a scene: a fixed illustrated backdrop with a paper card on top
-that holds every page. Day and night are two paper stocks rather than an
-inverted UI. Instrument Serif for display, DM Sans for everything else.
+First, run the development server:
 
 ```bash
-npm install
-npm run dev      # http://localhost:3000
-npm run build    # static export into ./out
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Where things live
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-| What | File |
-|---|---|
-| name, role line, email, social + profile links | `src/lib/site.ts` |
-| work history, education, ratings, awards | `src/lib/data.ts` |
-| projects page entries | `src/lib/projects.ts` |
-| life page sections | `src/lib/life.ts` |
-| "written elsewhere" list | `src/lib/posts.ts` |
-| card tagline, at-a-glance facts | `src/lib/site.ts`, `src/app/page.tsx` |
-| palette, paper, scene | `src/app/globals.css` |
-| blog posts | `content/writing/*.md` |
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Copy edits are data edits. You should almost never need to touch a component.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Writing a post
+## Learn More
 
-Drop a markdown file in `content/writing/`:
+To learn more about Next.js, take a look at the following resources:
 
-```markdown
----
-title: "the title, lowercase"
-date: 2026-09-14
-summary: "one line, shown in the list"
-draft: false
----
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Body in markdown.
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-`draft: true` keeps it off the site. It appears on `/writing` automatically,
-newest first, at `/writing/<filename>`.
+## Deploy on Vercel
 
-## The ambience
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-`./scripts/build-audio.sh` fetches four CC0 recordings from Freesound and loops
-them: rain, leaves in wind, a lapping river, and one distant thunder strike.
-
-These are the same files rishwajeetsingh.com uses. Its about page credits every
-source and links straight to it, and all four are Creative Commons Zero 1.0, a
-public domain dedication with no rights reserved and no attribution required.
-Using the same free sources is fair; copying that site's own artwork would not
-be, which is why the scenes are museum open access instead.
-
-The script needs network and ffmpeg. The processed mp3s are committed, so a
-deploy never runs it.
-
-Two things in there are load-bearing and fail silently if broken:
-
-- The loop opens the source twice and crossfades its tail back over its head.
-  The wrap is source-continuous, so it is genuinely seamless. Doing the same
-  with `asplit` starves the graph and ffmpeg writes an empty file with only
-  "No filtered frames for output stream" in the log.
-- A filtergraph cannot contain literal newlines, so those strings stay on one
-  line however long they get.
-
-Playback lives in `src/lib/ambience.ts` (a Web Audio mixer) and
-`src/components/SoundControl.tsx` (the button and sliders). Nothing is fetched
-or decoded until someone asks for sound, because browsers block autoplay
-anyway. The mix persists in localStorage.
-
-## The scenes
-
-Four backdrops, switchable from the control at the top left, all public domain
-from the Art Institute of Chicago's open access collection:
-
-| id | work |
-|---|---|
-| `moonlit` | Hiroshige, *No. 32: Seba*, c. 1835 |
-| `rain` | Caillebotte, *Paris Street; Rainy Day*, 1877 |
-| `mist` | Hiroshige, *Mishima: Morning Mist*, c. 1833 |
-| `dusk` | Inness, *Moonrise*, 1891 |
-
-Scene and theme are separate axes: the theme picks the paper stock, the scene
-picks what the paper lies on. The choice persists in localStorage and is applied
-before first paint by the inline script in `layout.tsx`.
-
-To add one: drop the image in `public/scenes/`, add a row to `SCENES` in
-`src/lib/scenes.ts`, add a `:root[data-scene="<id>"]` block in `globals.css`,
-and add the id to the allow-list in the pre-paint script. Tune `--scene-veil`
-per image, because a pale print needs more dimming than a dark painting for the
-card to stay readable.
-
-Woodblock prints work better than photographs here: flat colour and strong
-composition survive being blurred, where a photo turns to mush. Note that every
-print carries a white paper margin, which is why `.scene-art` zooms past it.
-
-Do not use artwork you do not have the rights to. Museum open access
-(artic.edu, metmuseum.org, rijksmuseum.nl) is the easy legal source; a site
-having no licence notice means all rights reserved, not free to take. The AIC
-IIIF endpoint returns 403 without a User-Agent header.
-
-## Deploying
-
-Netlify builds with `npm run build` and publishes `out/` (see `netlify.toml`).
-Nothing else to configure: there is no server runtime.
-
-## TODO
-
-- `src/lib/site.ts`: set `url` to the custom domain once bought, and fill in the
-  Codeforces profile link.
-- `src/lib/life.ts`: add the rest of the travel list.
-- `content/writing/competitive-programming-journey.md`: finish it or delete it.
-- Replace the placeholder scene, and the dashed postmark circle on the home
-  card, with real art.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

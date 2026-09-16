@@ -1,7 +1,12 @@
+import { s } from "motion/react-client";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
+  content: [
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     screens: {
       sm: "375px",
@@ -9,35 +14,21 @@ const config: Config = {
       lg: "1200px",
     },
     extend: {
-      colors: {
-        paper: "var(--paper)",
-        fg: "var(--fg)",
-        body: "var(--body)",
-        muted: "var(--muted)",
-        faint: "var(--faint)",
-        rule: "var(--rule)",
-        seal: {
-          DEFAULT: "var(--seal)",
-          ink: "var(--seal-ink)",
-        },
-        cta: {
-          DEFAULT: "var(--cta-bg)",
-          ink: "var(--cta-ink)",
-        },
-        highlight: {
-          DEFAULT: "var(--highlight)",
-          ink: "var(--highlight-ink)",
-        },
-        code: {
-          DEFAULT: "var(--code-bg)",
-          fg: "var(--code-fg)",
-          inline: "var(--code-inline)",
+      fontFamily: {
+        sans: "var(--font-archivo)",
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          md: "2rem",
+          lg: "4rem",
         },
       },
-      fontFamily: {
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+      colors: {
+        "red-orange": {
+          500: 'color-mix(in srgb, theme("colors.red.500") 50%, theme("colors.orange.500") 50%)',
+        },
       },
     },
   },
