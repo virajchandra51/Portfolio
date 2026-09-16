@@ -70,6 +70,9 @@ export default function Scene() {
               backgroundImage: `url("${src}")`,
               // Each plane shifts a different amount, which is the whole trick.
               ["--depth" as string]: depthFor(scene.layers!.length, i),
+              ...(scene.scale
+                ? { ["--plane-scale" as string]: `${scene.scale}%` }
+                : {}),
             }}
           />
         ))

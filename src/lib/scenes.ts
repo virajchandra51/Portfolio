@@ -5,6 +5,7 @@ export type SceneMix = {
   rain: number;
   leaves: number;
   water: number;
+  train: number;
   thunder: boolean;
 };
 
@@ -31,6 +32,13 @@ export type Scene = {
   // Draws an original CSS window frame over the planes: no image asset, just
   // borders and gradients in globals.css. See .train-frame.
   frame?: "train-window";
+  // Percent height the art is scaled to, same meaning as the CSS
+  // background-size shorthand's second value. Defaults to 112. Forest's
+  // source art is only 272x160, so the default blows it up ~5x and turns to
+  // visible blocks; a lower number keeps more of the original pixel detail
+  // at the cost of showing less width of unique art per screen (it still
+  // tiles, so nothing is cut off, just repeated sooner).
+  scale?: number;
 };
 
 export const SCENES: Scene[] = [
@@ -39,7 +47,8 @@ export const SCENES: Scene[] = [
     label: "Forest",
     note: "ansimuz, CC0",
     mood: "Warm and close",
-    mix: { rain: 0.45, leaves: 0.75, water: 0.12, thunder: false },
+    mix: { rain: 0.45, leaves: 0.75, water: 0.12, train: 0, thunder: false },
+    scale: 88,
     layers: [
       "/scenes/forest/1-back.png",
       "/scenes/forest/2-middle.png",
@@ -52,10 +61,8 @@ export const SCENES: Scene[] = [
     label: "Snow train",
     note: "CraftPix layers, original frame",
     mood: "Watching it go by",
-    // No train recording exists among the licensed loops, so this leans on
-    // wind rather than pretending there is one. Honest approximation, not a
-    // real train sound.
-    mix: { rain: 0, leaves: 0.4, water: 0, thunder: false },
+    // A real train interior recording, not an approximation.
+    mix: { rain: 0, leaves: 0, water: 0, train: 0.6, thunder: false },
     fast: true,
     frame: "train-window",
     layers: [
@@ -65,13 +72,13 @@ export const SCENES: Scene[] = [
       "/scenes/snow/4-front.png",
     ],
   },
-  { id: "moonlit", label: "Moonlit river", note: "Hiroshige, 1835" , mood: "Moon on the water" , mix: { rain: 0, leaves: 0.3, water: 0.7, thunder: false } },
+  { id: "moonlit", label: "Moonlit river", note: "Hiroshige, 1835" , mood: "Moon on the water" , mix: { rain: 0, leaves: 0.3, water: 0.7, train: 0, thunder: false } },
   {
     id: "underwater",
     label: "Underwater cave",
     note: "CraftPix, OGA-BY",
     mood: "Below the surface",
-    mix: { rain: 0, leaves: 0, water: 0.85, thunder: false },
+    mix: { rain: 0, leaves: 0, water: 0.85, train: 0, thunder: false },
     render: "smooth",
     layers: [
       "/scenes/underwater/1-layer.png",

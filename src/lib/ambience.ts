@@ -7,12 +7,13 @@
 // shot on a random timer, and only in scenes that want it.
 import type { SceneMix } from "@/lib/scenes";
 
-export type LayerName = "rain" | "leaves" | "water";
+export type LayerName = "rain" | "leaves" | "water" | "train";
 
 const FILES: Record<LayerName, string> = {
   rain: "/audio/rain.mp3",
   leaves: "/audio/leaves.mp3",
   water: "/audio/water.mp3",
+  train: "/audio/train.mp3",
 };
 
 const THUNDER_FILE = "/audio/thunder.mp3";

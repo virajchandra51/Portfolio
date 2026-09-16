@@ -136,7 +136,7 @@ export default function SceneSwitcher() {
               CraftPix backgrounds (OGA-BY 3.0); the train window is original
               CSS. Moonlit River by Hiroshige, public domain via the Art
               Institute of Chicago. Ambience: CC0 recordings by VanEngelen,
-              Sandermotions, ceich93 and Fission9 on Freesound.
+              Sandermotions, ceich93, Fission9 and craigsmith on Freesound.
             </p>
           </div>
         </div>

@@ -32,6 +32,7 @@ SOURCES=(
   "leaves|276294|Sandermotions|https://cdn.freesound.org/previews/276/276294_1402315-hq.mp3||Leaves in wind.WAV"
   "water|318064|ceich93|https://cdn.freesound.org/previews/318/318064_4457609-hq.mp3||Water_Lapping_River.wav"
   "thunder|581124|Fission9|https://cdn.freesound.org/previews/581/581124_9395330-hq.mp3||Distant Thunder 3"
+  "train|438798|craigsmith|https://cdn.freesound.org/previews/438/438798_2524442-hq.mp3||G49-09-Train Interior.wav"
 )
 
 echo "fetching sources"
@@ -74,6 +75,7 @@ echo "building loops"
 loop rain    3 56 6
 loop leaves  5 56 6
 loop water   2 52 6
+loop train   2 28 5
 
 # Thunder is a one shot and the source is already only 8s, so it is used whole
 # with a short fade at each end.
@@ -82,7 +84,7 @@ ffmpeg -hide_banner -loglevel error -y -i "$TMP/thunder.src.mp3" \
   -ar 44100 "$TMP/thunder.wav"
 
 echo "encoding"
-for f in rain leaves water thunder; do
+for f in rain leaves water thunder train; do
   ffmpeg -hide_banner -loglevel error -y -i "$TMP/$f.wav" \
     -codec:a libmp3lame -b:a 112k -ac 2 "$OUT/$f.mp3"
 done
