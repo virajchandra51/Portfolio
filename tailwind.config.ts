@@ -1,12 +1,7 @@
-import { s } from "motion/react-client";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
   theme: {
     screens: {
       sm: "375px",
@@ -14,21 +9,22 @@ const config: Config = {
       lg: "1200px",
     },
     extend: {
-      fontFamily: {
-        sans: "var(--font-archivo)",
-      },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: "1rem",
-          md: "2rem",
-          lg: "4rem",
-        },
-      },
       colors: {
-        "red-orange": {
-          500: 'color-mix(in srgb, theme("colors.red.500") 50%, theme("colors.orange.500") 50%)',
+        bg: "var(--bg)",
+        fg: "var(--fg)",
+        body: "var(--body)",
+        muted: "var(--muted)",
+        faint: "var(--faint)",
+        rule: "var(--rule)",
+        code: {
+          DEFAULT: "var(--code-bg)",
+          fg: "var(--code-fg)",
+          inline: "var(--code-inline)",
         },
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },
   },

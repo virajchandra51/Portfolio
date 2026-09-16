@@ -2,22 +2,215 @@
 @tailwind components;
 @tailwind utilities;
 
-.section {
-  @apply py-24 md:py-32 lg:py-40;
+:root {
+  --bg: #fbfaf8;
+  --fg: #1c1917;
+  --body: #44403c;
+  --muted: #78716c;
+  --faint: #a8a29e;
+  --rule: #e7e4df;
+  --code-bg: #1c1917;
+  --code-fg: #f5f5f4;
+  --code-inline: rgba(28, 25, 23, 0.07);
+  --select-bg: #1c1917;
+  --select-fg: #fbfaf8;
+  color-scheme: light;
 }
 
-@media screen and (min-width: 1024px) {
-  body {
-    overflow: hidden;
-    cursor: wait;
+/* Dark palette applies when the reader's system asks for it, or when they
+   pick it with the toggle. An explicit choice always wins over the system. */
+[data-theme="dark"] {
+    --bg: #0e0d0c;
+    --fg: #f2f0ed;
+    --body: #c4bfb9;
+    --muted: #8f8981;
+    --faint: #665f58;
+    --rule: #262320;
+    --code-bg: #191715;
+    --code-fg: #e7e5e4;
+    --code-inline: rgba(242, 240, 237, 0.09);
+    --select-bg: #f2f0ed;
+    --select-fg: #0e0d0c;
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e0d0c;
+    --fg: #f2f0ed;
+    --body: #c4bfb9;
+    --muted: #8f8981;
+    --faint: #665f58;
+    --rule: #262320;
+    --code-bg: #191715;
+    --code-fg: #e7e5e4;
+    --code-inline: rgba(242, 240, 237, 0.09);
+    --select-bg: #f2f0ed;
+    --select-fg: #0e0d0c;
+    color-scheme: dark;
   }
 }
 
-.line {
-  @apply overflow-hidden;
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
-.word {
-  @apply translate-y-full;
-  padding: 0.5px 0;
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+::selection {
+  background: var(--select-bg);
+  color: var(--select-fg);
+}
+
+/* Links inside prose get a quiet underline that fills in on hover. */
+.link {
+  @apply underline decoration-rule decoration-1 underline-offset-[3px] transition-colors;
+}
+.link:hover {
+  @apply decoration-fg;
+}
+
+.rule {
+  @apply my-10 h-px w-full border-0 bg-rule;
+}
+
+/* Markdown output from /writing */
+.prose-min > * + * {
+  @apply mt-4;
+}
+.prose-min h2 {
+  @apply mt-10 font-mono text-sm uppercase tracking-[0.12em] text-muted;
+}
+.prose-min h3 {
+  @apply mt-8 font-medium;
+}
+.prose-min p,
+.prose-min li {
+  @apply text-[0.975rem] leading-[1.75] text-body;
+}
+.prose-min ul {
+  @apply list-disc space-y-1 pl-5;
+}
+.prose-min ol {
+  @apply list-decimal space-y-1 pl-5;
+}
+.prose-min a {
+  @apply underline decoration-rule decoration-1 underline-offset-[3px] hover:decoration-fg;
+}
+.prose-min code {
+  @apply rounded bg-code-inline px-1 py-0.5 font-mono text-[0.85em];
+}
+.prose-min pre {
+  @apply overflow-x-auto rounded-md bg-code p-4 text-[0.8rem] leading-relaxed text-code-fg;
+}
+.prose-min pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+.prose-min blockquote {
+  @apply border-l-2 border-faint pl-4 text-muted italic;
+}
+
+/* Intro curtain. See src/components/Preloader.tsx.
+   The base state is hidden and the keyframe reveals it, so if animations never
+   run (reduced motion, a browser that drops them) the page is simply visible
+   rather than stuck behind a panel. No JS involved either way.
+   Timing: the word cycle finishes at 1.16s, the panel lifts from 1.26s to 1.5s. */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  animation: preloader-lift 1.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.preloader-words {
+  display: grid;
+}
+
+.preloader-word {
+  grid-area: 1 / 1;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: preloader-word 0.16s linear both;
+}
+
+@media screen and (min-width: 768px) {
+  .preloader-word {
+    font-size: 2.75rem;
+  }
+}
+
+.preloader-word:nth-child(1) {
+  animation-delay: 0.04s;
+  animation-duration: 0.3s;
+}
+.preloader-word:nth-child(2) {
+  animation-delay: 0.34s;
+}
+.preloader-word:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.preloader-word:nth-child(4) {
+  animation-delay: 0.66s;
+}
+.preloader-word:nth-child(5) {
+  animation-delay: 0.82s;
+}
+.preloader-word:nth-child(6) {
+  animation-delay: 0.96s;
+  animation-duration: 0.2s;
+}
+
+@keyframes preloader-word {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes preloader-lift {
+  0%,
+  70% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    border-radius: 0;
+  }
+  84% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    border-radius: 0 0 50% 50% / 0 0 18vh 18vh;
+  }
+  99.9% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-118%);
+    border-radius: 0 0 50% 50% / 0 0 0 0;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    display: none;
+  }
 }
